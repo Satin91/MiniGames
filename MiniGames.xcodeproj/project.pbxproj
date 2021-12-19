@@ -7,23 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750746DB276F033500597005 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746DA276F033500597005 /* ModuleBuilder.swift */; };
+		750746DD276F039500597005 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746DC276F039500597005 /* Router.swift */; };
+		750746DF276F05FD00597005 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746DE276F05FD00597005 /* MainPresenter.swift */; };
+		750746E4276F0EA100597005 /* SingleGameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746E2276F0EA100597005 /* SingleGameListViewController.swift */; };
+		750746E5276F0EA100597005 /* SingleGameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750746E3276F0EA100597005 /* SingleGameListViewController.xib */; };
+		750746E8276F104D00597005 /* SingleGameListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746E7276F104D00597005 /* SingleGameListPresenter.swift */; };
+		750746ED276F128500597005 /* ExtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746EC276F128500597005 /* ExtViewController.swift */; };
+		752ECF2E276F1FF9007BE008 /* MiniGamesCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 752ECF2C276F1FF9007BE008 /* MiniGamesCoreData.xcdatamodeld */; };
+		752ECF30276F2910007BE008 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ECF2F276F2910007BE008 /* CoreData.swift */; };
 		75E794A7276EF7040088E34D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E794A6276EF7040088E34D /* AppDelegate.swift */; };
 		75E794A9276EF7040088E34D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E794A8276EF7040088E34D /* SceneDelegate.swift */; };
-		75E794AB276EF7040088E34D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E794AA276EF7040088E34D /* ViewController.swift */; };
+		75E794AB276EF7040088E34D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E794AA276EF7040088E34D /* MainViewController.swift */; };
 		75E794AE276EF7040088E34D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E794AC276EF7040088E34D /* Main.storyboard */; };
 		75E794B0276EF70D0088E34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E794AF276EF70D0088E34D /* Assets.xcassets */; };
 		75E794B3276EF70D0088E34D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E794B1276EF70D0088E34D /* LaunchScreen.storyboard */; };
+		75E794BC276F019F0088E34D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75E794BB276F019F0088E34D /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		750746DA276F033500597005 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		750746DC276F039500597005 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		750746DE276F05FD00597005 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		750746E2276F0EA100597005 /* SingleGameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameListViewController.swift; sourceTree = "<group>"; };
+		750746E3276F0EA100597005 /* SingleGameListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleGameListViewController.xib; sourceTree = "<group>"; };
+		750746E7276F104D00597005 /* SingleGameListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameListPresenter.swift; sourceTree = "<group>"; };
+		750746EC276F128500597005 /* ExtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtViewController.swift; sourceTree = "<group>"; };
+		752ECF2D276F1FF9007BE008 /* SingleUserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SingleUserModel.xcdatamodel; sourceTree = "<group>"; };
+		752ECF2F276F2910007BE008 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		75E794A3276EF7040088E34D /* MiniGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E794A6276EF7040088E34D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75E794A8276EF7040088E34D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		75E794AA276EF7040088E34D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		75E794AA276EF7040088E34D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		75E794AD276EF7040088E34D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75E794AF276EF70D0088E34D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75E794B2276EF70D0088E34D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75E794B4276EF70D0088E34D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75E794BB276F019F0088E34D /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +57,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750746E0276F060300597005 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				750746DE276F05FD00597005 /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		750746E1276F060F00597005 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75E794BB276F019F0088E34D /* MainViewController.xib */,
+				75E794AA276EF7040088E34D /* MainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		750746E6276F0EA600597005 /* SingleGameModule */ = {
+			isa = PBXGroup;
+			children = (
+				750746F0276F13C500597005 /* Model */,
+				750746EA276F117D00597005 /* View */,
+				750746E9276F105000597005 /* Presenter */,
+			);
+			path = SingleGameModule;
+			sourceTree = "<group>";
+		};
+		750746E9276F105000597005 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				750746E7276F104D00597005 /* SingleGameListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		750746EA276F117D00597005 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				750746E2276F0EA100597005 /* SingleGameListViewController.swift */,
+				750746E3276F0EA100597005 /* SingleGameListViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		750746EB276F127500597005 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				750746EC276F128500597005 /* ExtViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		750746F0276F13C500597005 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				752ECF2C276F1FF9007BE008 /* MiniGamesCoreData.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		752ECF31276F2BA9007BE008 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				75E794A6276EF7040088E34D /* AppDelegate.swift */,
+				75E794A8276EF7040088E34D /* SceneDelegate.swift */,
+				752ECF33276F2BC4007BE008 /* InterfaceCreator */,
+				752ECF32276F2BB9007BE008 /* Storage */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		752ECF32276F2BB9007BE008 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				752ECF2F276F2910007BE008 /* CoreData.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		752ECF33276F2BC4007BE008 /* InterfaceCreator */ = {
+			isa = PBXGroup;
+			children = (
+				750746DA276F033500597005 /* ModuleBuilder.swift */,
+				750746DC276F039500597005 /* Router.swift */,
+			);
+			path = InterfaceCreator;
+			sourceTree = "<group>";
+		};
 		75E7949A276EF7040088E34D = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +164,25 @@
 		75E794A5276EF7040088E34D /* MiniGames */ = {
 			isa = PBXGroup;
 			children = (
-				75E794A6276EF7040088E34D /* AppDelegate.swift */,
-				75E794A8276EF7040088E34D /* SceneDelegate.swift */,
-				75E794AA276EF7040088E34D /* ViewController.swift */,
+				752ECF31276F2BA9007BE008 /* Application */,
+				750746EB276F127500597005 /* Extensions */,
+				75E794BA276F016D0088E34D /* MainModule */,
+				750746E6276F0EA600597005 /* SingleGameModule */,
 				75E794AC276EF7040088E34D /* Main.storyboard */,
 				75E794AF276EF70D0088E34D /* Assets.xcassets */,
 				75E794B1276EF70D0088E34D /* LaunchScreen.storyboard */,
 				75E794B4276EF70D0088E34D /* Info.plist */,
 			);
 			path = MiniGames;
+			sourceTree = "<group>";
+		};
+		75E794BA276F016D0088E34D /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				750746E0276F060300597005 /* Presenter */,
+				750746E1276F060F00597005 /* View */,
+			);
+			path = MainModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +245,9 @@
 			files = (
 				75E794B3276EF70D0088E34D /* LaunchScreen.storyboard in Resources */,
 				75E794B0276EF70D0088E34D /* Assets.xcassets in Resources */,
+				750746E5276F0EA100597005 /* SingleGameListViewController.xib in Resources */,
 				75E794AE276EF7040088E34D /* Main.storyboard in Resources */,
+				75E794BC276F019F0088E34D /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +258,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75E794AB276EF7040088E34D /* ViewController.swift in Sources */,
+				750746E8276F104D00597005 /* SingleGameListPresenter.swift in Sources */,
+				75E794AB276EF7040088E34D /* MainViewController.swift in Sources */,
+				752ECF2E276F1FF9007BE008 /* MiniGamesCoreData.xcdatamodeld in Sources */,
+				750746DF276F05FD00597005 /* MainPresenter.swift in Sources */,
+				750746ED276F128500597005 /* ExtViewController.swift in Sources */,
+				752ECF30276F2910007BE008 /* CoreData.swift in Sources */,
 				75E794A7276EF7040088E34D /* AppDelegate.swift in Sources */,
+				750746DD276F039500597005 /* Router.swift in Sources */,
 				75E794A9276EF7040088E34D /* SceneDelegate.swift in Sources */,
+				750746DB276F033500597005 /* ModuleBuilder.swift in Sources */,
+				750746E4276F0EA100597005 /* SingleGameListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +345,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -272,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -360,6 +488,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		752ECF2C276F1FF9007BE008 /* MiniGamesCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				752ECF2D276F1FF9007BE008 /* SingleUserModel.xcdatamodel */,
+			);
+			currentVersion = 752ECF2D276F1FF9007BE008 /* SingleUserModel.xcdatamodel */;
+			path = MiniGamesCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 75E7949B276EF7040088E34D /* Project object */;
 }
