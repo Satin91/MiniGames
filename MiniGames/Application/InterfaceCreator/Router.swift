@@ -13,29 +13,25 @@ protocol RouterStandart {
 }
 protocol RouterProtocol: RouterStandart {
     func initialViewController() // Начальный контроллер
-    func pushToSingleGame()
+    func pushToUsersList()
+    func pushToListOfGamesViewController()
+    func pushToGameViewController(game: GameProtocol)
     // Дальше установить переходы на другие контроллеры
 }
 
 
 //MARK: Навигация
 class Router: RouterProtocol {
-    
+
+  
     var navigationController: UINavigationController?
     var moduleBuilder: ModuleBuilderProtocol?
     
     
+    //MARK: init
     init(navigationController: UINavigationController, moduleBuilder: ModuleBuilderProtocol) {
         self.navigationController = navigationController
         self.moduleBuilder = moduleBuilder
-    }
-    
-    
-    //MARK: SingleGame
-    func pushToSingleGame() {
-        guard let navigationController = navigationController else { return }
-        guard let singleGameList = moduleBuilder?.createSingleGameListModule(router: self) else { return }
-        navigationController.pushViewController(singleGameList, animated: true)
     }
     
     
@@ -44,6 +40,30 @@ class Router: RouterProtocol {
         guard let navigationController = navigationController else { return }
         guard let mainView = moduleBuilder?.createMainModule(router: self) else { return }
         navigationController.viewControllers = [mainView]
+    }
+ 
+    
+    //MARK: UserList
+    func pushToUsersList() {
+        guard let navigationController = navigationController else { return }
+        guard let singleGameList = moduleBuilder?.createSingleGameUsersModule(router: self) else { return }
+        navigationController.pushViewController(singleGameList, animated: true)
+    }
+    
+    
+    //MARK: GamesList
+    func pushToListOfGamesViewController() {
+        guard let navigationController = navigationController else { return }
+        guard let listOfGamesViewController = moduleBuilder?.createListOfGamesModule(router: self) else { return }
+        navigationController.pushViewController(listOfGamesViewController, animated: true)
+    }
+    
+    
+    //MARK: Game
+    func pushToGameViewController(game: GameProtocol) {
+        guard let navigationController = navigationController else { return }
+        guard let gameViewController = moduleBuilder?.createGameModule(router: self, game: game) else { return }
+        navigationController.pushViewController(gameViewController, animated: true)
     }
     
 }

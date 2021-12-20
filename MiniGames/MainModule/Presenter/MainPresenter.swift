@@ -31,7 +31,7 @@ class MainPresenter: MainPresenterProtocol {
     
     //MARK: Output
     func tappedOnButton(text: String) {
-        router?.pushToSingleGame()
+        router?.pushToUsersList()
     }
     
 }

@@ -2,13 +2,15 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingleGameListViewController" customModule="MiniGames" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingleGameUsersViewController" customModule="MiniGames" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="Ipu-4D-pEV" id="cGV-9E-AfW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ql-Cn-3g4">
-                    <rect key="frame" x="208" y="96" width="160" height="31"/>
+                    <rect key="frame" x="22" y="96" width="160" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="5Yb-7P-NlA"/>
                         <constraint firstAttribute="width" constant="160" id="qfP-3j-OT5"/>
@@ -35,21 +37,36 @@
                     <rect key="frame" x="0.0" y="149" width="390" height="695"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UtP-0I-Hvs">
+                    <rect key="frame" x="214" y="96" width="154" height="31"/>
+                    <color key="tintColor" name="AccentColor"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="tinted" title="Выбрать игру"/>
+                    <connections>
+                        <action selector="chooseAGame:" destination="-1" eventType="touchUpInside" id="9Dl-Gm-UVq"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="3Ql-Cn-3g4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="22" id="2YY-Ea-m5O"/>
                 <constraint firstItem="3Ql-Cn-3g4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="52" id="3b8-gK-Uoe"/>
                 <constraint firstItem="Ipu-4D-pEV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="51G-lN-Qv9"/>
                 <constraint firstItem="Ipu-4D-pEV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6Gb-4a-ytg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3Ql-Cn-3g4" secondAttribute="trailing" constant="22" id="eTw-UW-bdF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UtP-0I-Hvs" secondAttribute="trailing" constant="22" id="Gd7-hK-mVB"/>
+                <constraint firstItem="UtP-0I-Hvs" firstAttribute="leading" secondItem="3Ql-Cn-3g4" secondAttribute="trailing" constant="32" id="R6S-4x-yXe"/>
                 <constraint firstItem="Ipu-4D-pEV" firstAttribute="top" secondItem="3Ql-Cn-3g4" secondAttribute="bottom" constant="22" id="iJL-pK-aHI"/>
                 <constraint firstAttribute="bottom" secondItem="Ipu-4D-pEV" secondAttribute="bottom" id="nvC-3H-rSt"/>
+                <constraint firstItem="UtP-0I-Hvs" firstAttribute="centerY" secondItem="3Ql-Cn-3g4" secondAttribute="centerY" id="xxd-ks-jpe"/>
             </constraints>
-            <point key="canvasLocation" x="137.68115942028987" y="88.392857142857139"/>
+            <point key="canvasLocation" x="136.92307692307691" y="88.151658767772503"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
