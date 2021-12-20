@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 class GameViewController: UIViewController {
  
@@ -20,11 +21,12 @@ class GameViewController: UIViewController {
     
     // MARK: Properties
     var presenter: GamePresenterProtocol!
-    
+  
    
     // MARK: Overriden funcs
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         setupCollectionView()
     }
     
