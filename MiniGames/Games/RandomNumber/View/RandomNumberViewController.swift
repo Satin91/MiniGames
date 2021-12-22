@@ -8,8 +8,11 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import CloudKit
 
 class RandomNumberViewController: UIViewController, GameProtocol {
+   
+    
     
     // MARK: Outlets
     @IBOutlet weak var button: UIButton!
@@ -20,15 +23,12 @@ class RandomNumberViewController: UIViewController, GameProtocol {
     weak var gamePresenter: GamePresenterProtocol?
     var timer: Timer?
     var speedAmmo = 20
-    var touchButtonDelegate: TouchButton?
+    var touchButtonDelegate: LinkedToGameVC?
     
     // MARK: Overriden funcs
     override func viewDidLoad() {
         super.viewDidLoad()
-        button.addTarget(self, action: #selector(buttonDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonUp), for: [.touchUpInside, .touchUpOutside])
         addSceneToView()
-        
     }
     
     
@@ -44,55 +44,35 @@ class RandomNumberViewController: UIViewController, GameProtocol {
             return .all
         }
     }
-    
+    func sendResult(result: Double) {
+        gamePresenter?.getResult(score: result)
+    }
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    @objc func buttonDown(_ sender: UIButton) {
-        singleFire()
-        touchButtonDelegate?.touchParentButton()
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(rapidFire), userInfo: nil, repeats: true)
+    
+    //     MARK: Action funcs
+    @IBAction func actionTapped(_ sender: Any) {
+        //        print(#function)
+        //        print(currentGame == nil)
+        //        currentGame?.goToPoint(toAngle: 4)
+        let randomInt = Int.random(in: 0..<100)
+        self.touchButtonDelegate?.touchParentButton()
+        
     }
-    
-    @objc func buttonUp(_ sender: UIButton) {
-        timer?.invalidate()
-    }
-    
-    func singleFire() {
-    }
-    
-    @objc func rapidFire() {
-        if speedAmmo > 0 {
-            speedAmmo -= 1
-            print("bang!")
-        } else {
-            print("out of speed ammo, dude!")
-            timer?.invalidate()
-        }
-    }
-    
-    // MARK: Action funcs
-    //    @IBAction func actionTapped(_ sender: Any) {
-    ////        print(#function)
-    ////        print(currentGame == nil)
-    ////        currentGame?.goToPoint(toAngle: 4)
-    //        let randomInt = Int.random(in: 0..<100)
-    //        gamePresenter?.getResult(score: Double(randomInt))
-    //    }
-    
-    
+
     // MARK: Private funcs
     func addSceneToView() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? LinkedToGameVC {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 // Present the scene
+                self.touchButtonDelegate = scene
+                scene.gameProtocol = self
                 view.presentScene(scene)
-                currentGame = scene
-                
             }
             view.ignoresSiblingOrder = true
             view.showsFPS = true

@@ -88,6 +88,5 @@ class GamePresenter: GamePresenterProtocol {
     func getResult(score: Double) {
         passNextPlayer()
         resultsInTheGame[currentPlayerIndex].score += score
-        print(resultsInTheGame)
     }
 }
