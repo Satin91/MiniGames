@@ -14,6 +14,7 @@ extension GameViewController {
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PlayersCell")
+        collectionView.isUserInteractionEnabled = false
     }
     
     func setupCollectionViewLayout() {
