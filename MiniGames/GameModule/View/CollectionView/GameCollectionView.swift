@@ -13,6 +13,7 @@ extension GameViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = .systemOrange
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PlayersCell")
         collectionView.isUserInteractionEnabled = false
     }

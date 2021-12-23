@@ -29,8 +29,9 @@ class RandomNumberViewController: UIViewController, GameProtocol {
     
     
     //     MARK: Action funcs
-    @IBAction func actionTapped(_ sender: Any) {
+    @IBAction func buttonTapped(_ sender: UIButton) {
         self.touchButtonDelegate?.requestResult()
+        sender.isUserInteractionEnabled = false
     }
 
     
@@ -55,6 +56,7 @@ class RandomNumberViewController: UIViewController, GameProtocol {
     
     func sendResult(result: Double, index: Int?) {
         presenter?.getResult(score: result, index: index)
+        button.isUserInteractionEnabled = true
     }
     deinit {
         print("Deinit")

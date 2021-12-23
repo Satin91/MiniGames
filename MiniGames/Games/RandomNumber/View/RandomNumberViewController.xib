@@ -29,7 +29,7 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Действие"/>
                     <connections>
-                        <action selector="actionTapped:" destination="-1" eventType="touchUpInside" id="3Ae-kk-SCZ"/>
+                        <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="aw7-te-UA6"/>
                     </connections>
                 </button>
             </subviews>
