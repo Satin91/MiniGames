@@ -9,6 +9,7 @@ import Foundation
 
 protocol GameProtocol {
     // Обязательно представлять этот протокол как Weak
-    var gamePresenter: GamePresenterProtocol? { get set }
-    func sendResult(result: Double)
+    var presenter: GamePresenterProtocol? { get set }
+    var players: [SingleUserModel]? { get set }
+    func sendResult(result: Double, index: Int?)
 }

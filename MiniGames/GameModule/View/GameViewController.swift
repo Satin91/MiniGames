@@ -24,7 +24,6 @@ class GameViewController: UIViewController {
     var gameProtocol: GameProtocol!
     var playerResult: PlayersGameModel?
     
-    
     // MARK: Overriden funcs
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,36 +40,23 @@ class GameViewController: UIViewController {
         setupCollectionViewLayout()
     }
     
-    
 }
 
 extension GameViewController: GameViewProtocol {
+ 
+    
     func moveCollectionView(toIndex: IndexPath) {
         self.collectionView.scrollToItem(at: toIndex, at: .centeredHorizontally, animated: true)
     }
     
-    func addGameToChildView(game: inout GameProtocol, presenter: GamePresenterProtocol) {
-        game.gamePresenter = presenter
+    func addGameToChildView(game: inout GameProtocol, presenter: GamePresenterProtocol, players: [SingleUserModel]?) {
+        game.presenter = presenter
+        game.players = players
         guard let game = game as? UIViewController else { return }
         addChild(game)
         game.view.frame = gameView.bounds
         gameView.addSubview(game.view)
         game.didMove(toParent: self)
-//        if var game2 = game as? GameProtocol {
-//            game.gamePresenter = presenter
-//        }
-    }
-    
-    
-    
-    
-    
-    
-    func addGameToChildView(game: GameProtocol, presenter: GamePresenterProtocol) {
-        
-     
-       // print("Game protocol\(gameProtocol.gamePresenter = presenter)")
-        //gameProtocol.gamePresenter = self.presenter
     }
 }
 

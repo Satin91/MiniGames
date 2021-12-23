@@ -10,17 +10,17 @@ import Foundation
 protocol GameViewProtocol: AnyObject {
     var playerResult: PlayersGameModel? { get set }
     func moveCollectionView(toIndex: IndexPath)
-    func addGameToChildView(game: inout GameProtocol, presenter: GamePresenterProtocol)
+    func addGameToChildView(game: inout GameProtocol, presenter: GamePresenterProtocol, players: [SingleUserModel]?)
 }
 
 protocol GamePresenterProtocol: AnyObject {
     init(view: GameViewProtocol, router: RouterProtocol, game: GameProtocol?)
     func sendGameToView(game: inout GameProtocol?)
     func presentGame()
-    func getPlayers()
-    var players: [SingleUserModel]? { get set }
-    func getResult(score: Double)
+    //   func getPlayers()
+    func getResult(score: Double, index: Int?)
     func passNextPlayer()
+    var players: [SingleUserModel]? { get set }
 }
 
 
@@ -52,7 +52,7 @@ class GamePresenter: GamePresenterProtocol {
     
     func sendGameToView(game: inout GameProtocol?) {
         guard var game = game else { return }
-        view?.addGameToChildView(game: &game, presenter: self)
+        view?.addGameToChildView(game: &game, presenter: self, players: players)
     }
     
     func passNextPlayer() {
@@ -66,7 +66,7 @@ class GamePresenter: GamePresenterProtocol {
     
     
     // MARK: Private funcs
-    func getPlayers() {
+    private func getPlayers() {
         CoreData.shared.requestUsers { result in
             switch result {
             case .success(let players):
@@ -77,7 +77,7 @@ class GamePresenter: GamePresenterProtocol {
         }
     }
     
-    func createModels() {
+    private func createModels() {
         for i in players! {
             resultsInTheGame.append(PlayersGameModel(name: i.name!, score: 0))
         }
@@ -85,8 +85,9 @@ class GamePresenter: GamePresenterProtocol {
     
     
     // MARK: Delegate funcs
-    func getResult(score: Double) {
+    func getResult(score: Double, index: Int?) {
         passNextPlayer()
+        print(score)
         resultsInTheGame[currentPlayerIndex].score += score
     }
 }

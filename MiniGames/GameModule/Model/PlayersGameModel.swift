@@ -16,5 +16,6 @@ struct GameModel {
 struct PlayersGameModel {
     var name: String
     var score: Double
+    var index: Int? // В играх, где нет перехода, индекс равен nil
 }
 
