@@ -54,24 +54,23 @@ class GameScene: SKScene, LinkedToGameVC {
         let pi = Double.pi
         var angle = CGFloat(2 * pi)
         let step = (CGFloat(2 *  pi) / CGFloat(count))
-        print(step)
         for _ in 0...count {
 
             let y = cos(angle + (step / 2)) * radius
             let x = sin(angle + (step / 2)) * radius
-                     
+            let rect = CGRect(x: x - (itemSize / 2) , y: y - (itemSize / 2), width: itemSize, height: itemSize)
+            
+            createUser(rect: rect, imageName: "bottle")
             angle += step
-            
-            let player = SKShapeNode(rect: CGRect(x: x - (itemSize / 2) , y: y - (itemSize / 2), width: itemSize, height: itemSize) , cornerRadius: 16)
-            
-            let texture = SKTexture(imageNamed: "user3.passport")
-            player.fillTexture = texture
-            self.playersObjects.append(player)
         }
-        
-        playersObjects.forEach { object in
-            backgroundObject.addChild(object)
-        }
+    }
+    
+    func createUser(rect: CGRect, imageName: String) {
+        let player = SKShapeNode(rect: CGRect(x: rect.origin.x , y: rect.origin.y, width: rect.width, height: rect.height) , cornerRadius: 16)
+        player.fillColor = .white
+        player.fillTexture = SKTexture(imageNamed: imageName)
+        self.playersObjects.append(player)
+        backgroundObject.addChild(player)
     }
     
     func createCircle() {

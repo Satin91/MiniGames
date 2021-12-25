@@ -68,7 +68,7 @@ extension GameViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayersCell", for: indexPath)
-        let image = UIImageView(image: UIImage(named: "user3.passport"))
+        let image = UIImageView(image: UIImage(named: "user2"))
         image.frame = cell.bounds
         image.contentMode = .scaleAspectFit
         cell.backgroundColor = .white

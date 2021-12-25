@@ -68,11 +68,10 @@ class CoreData {
         do {
             let user = try context.fetch(request)
             context.delete(user.first!)
+            self.saveContext()
         } catch {
-            
+            print("Удаления не произошло")
         }
-        
-        //context.delete(<#T##object: NSManagedObject##NSManagedObject#>)
     }
     //MARK: Transactions
     func updateModel(user: SingleUserModel) {

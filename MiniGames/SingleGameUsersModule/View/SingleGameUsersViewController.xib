@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,27 +20,21 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ql-Cn-3g4">
-                    <rect key="frame" x="22" y="96" width="160" height="31"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="31" id="5Yb-7P-NlA"/>
-                        <constraint firstAttribute="width" constant="160" id="qfP-3j-OT5"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Добавить игрока"/>
-                    <connections>
-                        <action selector="createUser:" destination="-1" eventType="touchUpInside" id="ds8-Wr-9Pt"/>
-                    </connections>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ipu-4D-pEV">
-                    <rect key="frame" x="0.0" y="149" width="390" height="695"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ipu-4D-pEV" customClass="RegularTableView" customModule="MiniGames" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="720"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UtP-0I-Hvs">
-                    <rect key="frame" x="214" y="96" width="154" height="31"/>
-                    <color key="tintColor" name="AccentColor"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Выбрать игру"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UtP-0I-Hvs" customClass="FilledButton" customModule="MiniGames" customModuleProvider="target">
+                    <rect key="frame" x="20" y="744" width="350" height="60"/>
+                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="3k6-Kj-SpO"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Выбрать игру"/>
                     <connections>
                         <action selector="chooseAGame:" destination="-1" eventType="touchUpInside" id="9Dl-Gm-UVq"/>
                     </connections>
@@ -50,25 +43,29 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="3Ql-Cn-3g4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="22" id="2YY-Ea-m5O"/>
-                <constraint firstItem="3Ql-Cn-3g4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="52" id="3b8-gK-Uoe"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UtP-0I-Hvs" secondAttribute="trailing" constant="20" id="40i-qv-IKu"/>
                 <constraint firstItem="Ipu-4D-pEV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="51G-lN-Qv9"/>
+                <constraint firstItem="UtP-0I-Hvs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="5va-S8-f3C"/>
                 <constraint firstItem="Ipu-4D-pEV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6Gb-4a-ytg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UtP-0I-Hvs" secondAttribute="trailing" constant="22" id="Gd7-hK-mVB"/>
-                <constraint firstItem="UtP-0I-Hvs" firstAttribute="leading" secondItem="3Ql-Cn-3g4" secondAttribute="trailing" constant="32" id="R6S-4x-yXe"/>
-                <constraint firstItem="Ipu-4D-pEV" firstAttribute="top" secondItem="3Ql-Cn-3g4" secondAttribute="bottom" constant="22" id="iJL-pK-aHI"/>
-                <constraint firstAttribute="bottom" secondItem="Ipu-4D-pEV" secondAttribute="bottom" id="nvC-3H-rSt"/>
-                <constraint firstItem="UtP-0I-Hvs" firstAttribute="centerY" secondItem="3Ql-Cn-3g4" secondAttribute="centerY" id="xxd-ks-jpe"/>
+                <constraint firstItem="UtP-0I-Hvs" firstAttribute="top" secondItem="Ipu-4D-pEV" secondAttribute="bottom" constant="24" id="8tJ-eO-Nzc"/>
+                <constraint firstAttribute="bottom" secondItem="UtP-0I-Hvs" secondAttribute="bottom" constant="40" id="WzS-Nc-Y7U"/>
+                <constraint firstItem="Ipu-4D-pEV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="q9f-oC-34r"/>
             </constraints>
             <point key="canvasLocation" x="136.92307692307691" y="88.151658767772503"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

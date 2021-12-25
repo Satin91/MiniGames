@@ -11,7 +11,7 @@ import SwiftUI
 class SingleGameUsersViewController: UIViewController {
     
     //MARK: Outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: RegularTableView!
     
     
     //MARK: Properties
@@ -22,11 +22,16 @@ class SingleGameUsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupNavBar()
+        setupView()
+        
     }
     
+    @objc func leftBarButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
-    // MARK: Action funcs
-    @IBAction func createUser(_ sender: UIButton) {
+    @objc func rightBarButton() {
         self.showAlert(title: "Новый участник", message: "Введите имя") { name in
             guard let name = name else { return }
             self.presenter?.saveUser(name: name)
@@ -42,8 +47,16 @@ class SingleGameUsersViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .systemGroupedBackground
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SingleGameCell")
+    }
+    
+    private func setupNavBar() {
+        self.navigationItem.setMGButtonItem(imageName: "person.fill.badge.plus", position: .right, target: self, action: #selector(rightBarButton))
+        self.navigationItem.setMGButtonItem(imageName: "arrow.backward", position: .left, target: self, action: #selector(leftBarButton))
+    }
+    
+    private func setupView() {
+        self.view.backgroundColor = .MGBackground
     }
 }
 
