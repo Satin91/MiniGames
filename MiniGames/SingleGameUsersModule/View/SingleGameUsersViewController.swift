@@ -16,6 +16,7 @@ class SingleGameUsersViewController: UIViewController {
     
     //MARK: Properties
     var presenter: SingleGamePlayersPresenterProtocol!
+    lazy var createUserScreen = CreateSingleGameUser(frame: self.view.bounds, presentOn: self)
     
     
     // MARK: Overriden funcs
@@ -24,7 +25,6 @@ class SingleGameUsersViewController: UIViewController {
         setupTableView()
         setupNavBar()
         setupView()
-        
     }
     
     @objc func leftBarButton() {
@@ -32,10 +32,10 @@ class SingleGameUsersViewController: UIViewController {
     }
     
     @objc func rightBarButton() {
-        self.showAlert(title: "Новый участник", message: "Введите имя") { name in
-            guard let name = name else { return }
-            self.presenter?.saveUser(name: name)
+        self.createUserScreen.show { name, avatar in
+            self.presenter?.saveUser(name: name, avatar: avatar)
         }
+
     }
     
     @IBAction func chooseAGame(_ sender: UIButton) {
@@ -47,7 +47,7 @@ class SingleGameUsersViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SingleGameCell")
+        tableView.register(UINib(nibName: "PlayersTableViewCell", bundle: nil) , forCellReuseIdentifier: PlayersTableViewCell.id)
     }
     
     private func setupNavBar() {
@@ -68,9 +68,10 @@ extension SingleGameUsersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SingleGameCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.id, for: indexPath) as! PlayersTableViewCell
+        
         let object = presenter.players?[indexPath.row]
-        cell.textLabel?.text = object!.name
+        cell.configureCell(player: object!)
         return cell
     }
 }

@@ -49,10 +49,11 @@ class CoreData {
     
     
     
-    func saveUser(name: String?, completion: (SingleUserModel?, Bool) -> Void ) {
+    func saveUser(name: String?,avatar: String, completion: (SingleUserModel?, Bool) -> Void ) {
         let user = SingleUserModel(context: context)
-        user.name = (name != nil && name != "") ? name: "Новый пользователь"
+        user.name = (name != nil && name != "") ? name: "Новый игрок"
         user.id = UUID()
+        user.avatar = avatar
         do {
             try self.context.save()
             completion(user, true)

@@ -19,11 +19,11 @@ class RegularTableView: UITableView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupTableView()
-        //fatalError("init(coder:) has not been implemented")
     }
     
     func setupTableView() {
-        self.separatorColor = .MGBackground
+        self.separatorColor = .MGSaturatedImage.withAlphaComponent(0.4)
         self.backgroundColor = .clear
+        self.rowHeight = 60
     }
 }

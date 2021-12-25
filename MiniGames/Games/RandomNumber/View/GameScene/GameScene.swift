@@ -34,19 +34,19 @@ class GameScene: SKScene, LinkedToGameVC {
         createCircle()
         createFlippingObject()
         createPlayers()
-        self.backgroundColor = .systemOrange
+        self.backgroundColor = .MGBackground
     }
     
     func createFlippingObject() {
         bottle = SKSpriteNode(imageNamed: "bottle")
         bottle.size = CGSize(width: 240, height: 240)
         bottle.position = CGPoint(x: 0.0, y: 0.0)
-      //  bottle.anchorPoint = CGPoint(x: 0.5, y: 0.2)
+        //  bottle.anchorPoint = CGPoint(x: 0.5, y: 0.2)
         backgroundObject.addChild(bottle)
         
     }
     
-
+    
     func createPlayers() {
         let radius: CGFloat = circleRadius
         let count = self.players!.count
@@ -54,13 +54,15 @@ class GameScene: SKScene, LinkedToGameVC {
         let pi = Double.pi
         var angle = CGFloat(2 * pi)
         let step = (CGFloat(2 *  pi) / CGFloat(count))
-        for _ in 0...count {
-
+        for i in 0..<count {
+            
             let y = cos(angle + (step / 2)) * radius
             let x = sin(angle + (step / 2)) * radius
             let rect = CGRect(x: x - (itemSize / 2) , y: y - (itemSize / 2), width: itemSize, height: itemSize)
             
-            createUser(rect: rect, imageName: "bottle")
+            
+            
+            self.createUser(rect: rect, imageName: (self.players![i].avatar)!)
             angle += step
         }
     }
@@ -68,7 +70,11 @@ class GameScene: SKScene, LinkedToGameVC {
     func createUser(rect: CGRect, imageName: String) {
         let player = SKShapeNode(rect: CGRect(x: rect.origin.x , y: rect.origin.y, width: rect.width, height: rect.height) , cornerRadius: 16)
         player.fillColor = .white
-        player.fillTexture = SKTexture(imageNamed: imageName)
+        //player.fillTexture = SKTexture(imageNamed: imageName)
+        let node = SKShapeNode(rect: player.frame, cornerRadius: 18)
+        node.fillColor = .white
+        node.fillTexture = SKTexture(imageNamed: imageName)
+        player.addChild(node)
         self.playersObjects.append(player)
         backgroundObject.addChild(player)
     }
@@ -78,8 +84,8 @@ class GameScene: SKScene, LinkedToGameVC {
         circle.position = CGPoint(x: frame.midX, y: frame.midY)  //Middle of Screen
         //circle.strokeColor = SKColor.gray
         //circle.glowWidth = 1.0
-       // circle.fillColor = SKColor.systemPink
-       // backgroundObject.addChild(circle)
+        // circle.fillColor = SKColor.systemPink
+        // backgroundObject.addChild(circle)
     }
     
     func requestResult() {
@@ -94,7 +100,7 @@ class GameScene: SKScene, LinkedToGameVC {
     
     
     func getNumberArray(start: CGFloat, stride2: CGFloat) -> [CGFloat] {
-     
+        
         var array: [CGFloat] = []
         var sum: CGFloat = 0
         for _ in 0...players!.count * 25 {
@@ -103,7 +109,7 @@ class GameScene: SKScene, LinkedToGameVC {
         }
         return array
     }
-
+    
     
     func responseResult() {
         let degree360: CGFloat = 6.28319
@@ -113,7 +119,7 @@ class GameScene: SKScene, LinkedToGameVC {
         let randomNumber = Int.random(in: 0...stridedNubers.count - 1)
         
         let angle = CGFloat(stridedNubers[randomNumber] - part / 2)
-       
+        
         let flip = Int(angle / degree360)
         let totalPrats = angle / part
         let res = players!.count * flip

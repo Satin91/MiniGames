@@ -16,7 +16,7 @@ protocol SingleGamePlayersViewProtocol: AnyObject {
 
 protocol SingleGamePlayersPresenterProtocol: AnyObject {
     var players: [SingleUserModel]? { get set}
-    func saveUser(name: String)
+    func saveUser(name: String, avatar: String)
     func removeUser(indexPath: IndexPath, completion: @escaping () -> Void)
     func chooseAGame()
     init(view: SingleGamePlayersViewProtocol, router: RouterProtocol)
@@ -50,8 +50,8 @@ class SingleGamePlayersPresenter: SingleGamePlayersPresenterProtocol {
         completion()
     }
     
-    func saveUser(name: String) {
-        CoreData.shared.saveUser(name: name, completion: { user, isSuccess in
+    func saveUser(name: String, avatar: String) {
+        CoreData.shared.saveUser(name: name, avatar: avatar, completion: { user, isSuccess in
             guard isSuccess else { return }
             self.players?.append(user!)
         })

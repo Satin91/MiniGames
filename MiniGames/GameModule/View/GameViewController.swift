@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,11 +40,11 @@ class GameViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setupCollectionViewLayout()
     }
-    
+ 
 }
 
 extension GameViewController: GameViewProtocol {
- 
+    
     
     func moveCollectionView(toIndex: IndexPath) {
         self.collectionView.scrollToItem(at: toIndex, at: .centeredHorizontally, animated: true)
@@ -68,7 +69,11 @@ extension GameViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayersCell", for: indexPath)
-        let image = UIImageView(image: UIImage(named: "user2"))
+        for i in cell.subviews {
+            i.removeFromSuperview()
+        }
+        guard let player = presenter.players?[indexPath.row] else { return cell }
+        let image = UIImageView(image: UIImage(named: player.avatar!))
         image.frame = cell.bounds
         image.contentMode = .scaleAspectFit
         cell.backgroundColor = .white
