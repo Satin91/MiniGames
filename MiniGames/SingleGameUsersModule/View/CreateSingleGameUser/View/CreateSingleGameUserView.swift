@@ -9,13 +9,15 @@ import Foundation
 import UIKit
 
 
-class CreateSingleGameUser: UIView {
+class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     
     
-    weak var controller: UIViewController!
-    private var nameTextField = RegularTextField(placeholder: "Введите имя")
+    weak var owner: UIView!
+    private var nameTextField = RegularTextField(type: .filled, placeholder: "Введите имя")
     private var collectionView: AvatarsCollectionView!
     private var createButton: FilledButton!
+    private var closeButton: CircleButton!
+    private var completion: ((String,String)-> Void)?
     private var avatarName: String = "user1"
     private var playerName: String = "Новый игрок"
     var descriptionLabel: UILabel = {
@@ -26,38 +28,38 @@ class CreateSingleGameUser: UIView {
         label.numberOfLines = 2
         return label
     }()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
-    convenience init(frame: CGRect, presentOn: UIViewController) {
-        self.init(frame: frame)
-        self.controller = presentOn
-        setupFrame()
+    
+    convenience init(owner: UIView) {
+        self.init()
+        self.owner = owner
+        setupView()
         setupRadius()
         setupShadow()
         setupLabel()
         setupTextField()
-        setupButton()
+        setupButtons()
         setupCollectionView()
         setupConstraints()
+        
     }
     
-    var completion: ((String,String)-> Void)?
-    
-    func show(completion: ((String,String) -> Void)?) {
-        self.controller.view.addSubview(self)
+    public func show(completion: ((String,String) -> Void)?) {
         self.completion = completion
+        self.showFromRightSide(onView: self.owner)
     }
     
     
-    private func setupFrame() {
-        self.backgroundColor = .MGBackground
-        let width: CGFloat = self.controller.view.bounds.width - (Insets.additionalHorizontalIndent * 2)
-        let height: CGFloat = self.controller.view.bounds.height * 0.7
+    private func setupView() {
+        self.backgroundColor = .white
+        self.accessibilityIdentifier = "CreateSingleGameUserView"
+        let width: CGFloat = self.owner.bounds.width - (Insets.additionalHorizontalIndent * 2)
+        let height: CGFloat = self.owner.bounds.height * 0.7
         self.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        self.center = controller.view.center
     }
     
     private func setupShadow() {
@@ -74,28 +76,28 @@ class CreateSingleGameUser: UIView {
     
     //MARK: UI
     private func setupTextField() {
+        nameTextField.delegate = self
+        nameTextField.addTarget(self, action: #selector(textFieldDIdChange(_:)), for: .editingChanged)
         addSubview(nameTextField)
     }
     
-    func setupLabel() {
+    private func setupLabel() {
         descriptionLabel.text = "Дайте имя новому игроку и выберите аватар."
         addSubview(descriptionLabel)
     }
     
-    func setupButton() {
+    private func setupButtons() {
         createButton = FilledButton(type: .system)
         createButton.setTitle("Добавить", for: .normal)
         createButton.addTarget(self, action: #selector(createPlayerButtonTapped), for: .touchUpInside)
+        closeButton = CircleButton(side: 30, type: .close)
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         addSubview(createButton)
+        addSubview(closeButton)
     }
     
-    @objc func createPlayerButtonTapped() {
-        completion!(playerName,avatarName)
-        print("asad")
-        self.removeFromSuperview()
-    }
     
-    func setupCollectionView() {
+    private func setupCollectionView() {
         collectionView = AvatarsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.delegate = self
         collectionView.layer.cornerCurve  = .continuous
@@ -104,11 +106,12 @@ class CreateSingleGameUser: UIView {
     }
     
     //MARK: Constrains
-    func setupConstraints() {
+    private func setupConstraints() {
         nameTextField.translatesAutoresizingMaskIntoConstraints    = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints   = false
-        createButton.translatesAutoresizingMaskIntoConstraints   = false
+        createButton.translatesAutoresizingMaskIntoConstraints     = false
+        closeButton.translatesAutoresizingMaskIntoConstraints      = false
         
         NSLayoutConstraint.activate([
             //Label
@@ -123,11 +126,17 @@ class CreateSingleGameUser: UIView {
             nameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -Insets.textIndent),
             nameTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 18),
             
-            //CollectionView
+            //CreateButton
             createButton.heightAnchor.constraint(equalToConstant: 44),
             createButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: Insets.textIndent),
             createButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -Insets.textIndent),
             createButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -18),
+            
+            //CloseButton
+            closeButton.heightAnchor.constraint(equalToConstant: 30),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.textIndent),
+            closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Insets.textIndent),
             
             //CollectionView
             collectionView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor,constant: 18),
@@ -137,16 +146,33 @@ class CreateSingleGameUser: UIView {
         ])
     }
     
+    @objc func createPlayerButtonTapped() {
+        completion!(playerName,avatarName)
+        self.closeAnimation()
+    }
+    
+    @objc func closeButtonTapped() {
+        self.closeAnimation()
+    }
+    
+    @objc func textFieldDIdChange(_ textField: UITextField) {
+        guard let text = textField.text, text != "" else {
+            playerName = "Новый игрок"
+            return
+        }
+        playerName = text
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
 }
 
-
-
-
-extension CreateSingleGameUser: UICollectionViewDelegate {
+extension CreateSingleGameUserView: UICollectionViewDelegate {
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let object = Avatars.avatars[indexPath.row]
         self.avatarName = object

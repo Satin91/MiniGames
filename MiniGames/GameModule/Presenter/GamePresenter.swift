@@ -10,12 +10,12 @@ import Foundation
 protocol GameViewProtocol: AnyObject {
     var playerResult: PlayersGameModel? { get set }
     func moveCollectionView(toIndex: IndexPath)
-    func addGameToChildView(game: inout GameProtocol, presenter: GamePresenterProtocol, players: [SingleUserModel]?)
+    func addGameToChildView(game: GameProtocol, presenter: GamePresenterProtocol, players: [SingleUserModel]?)
 }
 
 protocol GamePresenterProtocol: AnyObject {
     init(view: GameViewProtocol, router: RouterProtocol, game: GameProtocol?)
-    func sendGameToView(game: inout GameProtocol?)
+    func sendGameToView(game: GameProtocol?)
     func presentGame()
     //   func getPlayers()
     func getResult(score: Double, index: Int?)
@@ -47,12 +47,12 @@ class GamePresenter: GamePresenterProtocol {
     
     // MARK: Public funcs:
     func presentGame() {
-        sendGameToView(game: &game)
+        sendGameToView(game: game)
     }
     
-    func sendGameToView(game: inout GameProtocol?) {
-        guard var game = game else { return }
-        view?.addGameToChildView(game: &game, presenter: self, players: players)
+    func sendGameToView(game: GameProtocol?) {
+        guard let game = game else { return }
+        view?.addGameToChildView(game: game, presenter: self, players: players)
     }
     
     func passNextPlayer() {

@@ -18,12 +18,13 @@ protocol SingleGamePlayersPresenterProtocol: AnyObject {
     var players: [SingleUserModel]? { get set}
     func saveUser(name: String, avatar: String)
     func removeUser(indexPath: IndexPath, completion: @escaping () -> Void)
+    func updateUser(index: IndexPath)
     func chooseAGame()
     init(view: SingleGamePlayersViewProtocol, router: RouterProtocol)
 }
 
 class SingleGamePlayersPresenter: SingleGamePlayersPresenterProtocol {
-  
+    
     weak var view: SingleGamePlayersViewProtocol?
     var router: RouterProtocol?
     var players: [SingleUserModel]?
@@ -56,6 +57,10 @@ class SingleGamePlayersPresenter: SingleGamePlayersPresenterProtocol {
             self.players?.append(user!)
         })
         self.view?.addUser()
+    }
+    func updateUser(index: IndexPath) {
+        let user = players?[index.row]
+        CoreData.shared.updateModel(user: user!)
     }
     func chooseAGame() {
         router?.pushToListOfGamesViewController()

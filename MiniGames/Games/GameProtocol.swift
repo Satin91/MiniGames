@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameProtocol {
+protocol GameProtocol: AnyObject {
     // Обязательно представлять этот протокол как Weak
     var presenter: GamePresenterProtocol? { get set }
     var players: [SingleUserModel]? { get set }

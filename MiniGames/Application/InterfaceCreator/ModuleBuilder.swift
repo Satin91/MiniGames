@@ -18,9 +18,6 @@ protocol ModuleBuilderProtocol {
 class ModuleBuilder: ModuleBuilderProtocol {
 
     
-  
-    
-    
    //MARK: MainModule
     func createMainModule(router: RouterProtocol) -> UIViewController {
         let view = MainViewController()

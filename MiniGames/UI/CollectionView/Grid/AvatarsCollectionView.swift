@@ -10,14 +10,21 @@ import SwiftUI
 
 class AvatarsCollectionView: UICollectionView {
     
+    
+    // MARK: Properties
     static let id = "GridCollectionViewCell"
-
     var layout = UICollectionViewFlowLayout()
     
+    
+    // MARK: Overriden funcs
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: self.layout)
+        super.init(frame: frame, collectionViewLayout: layout)
         setupCollectionView()
-        setupLayout()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //  setupLayout()
         
     }
     
@@ -25,23 +32,53 @@ class AvatarsCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
-        let spacing: CGFloat = 15
-        let side = self.bounds.width / 3 - (spacing * 1.5)
-        layout.itemSize = CGSize(width: side, height: side)
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = spacing
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-    }
-    func setupCollectionView() {
-        self.register(UICollectionViewCell.self, forCellWithReuseIdentifier: AvatarsCollectionView.id)
-        self.collectionViewLayout = self.layout
-        self.dataSource = self
+    
+    // MARK: Public funcs:
+    public func cell(indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.dequeueReusableCell(withReuseIdentifier: AvatarsCollectionView.id, for: indexPath)
+        return cell
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setupLayout()
+    
+    // MARK: Private funcs
+    
+    
+    private func setupCollectionView() {
+        register(UICollectionViewCell.self, forCellWithReuseIdentifier: AvatarsCollectionView.id)
+        collectionViewLayout = createLayout()
+        isPagingEnabled = true
+        dataSource = self
+    }
+    
+    func createLayout() -> UICollectionViewLayout {
+        
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            
+            let spacing: CGFloat = 15
+            
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1.0)) )
+            
+            
+            // Группа
+            
+            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(1.0) ) , subitem: item, count: 3)
+                                                                     
+                                                                     
+            horizontalGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(spacing)
+            
+            // Группа для групп
+            
+            let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(self.bounds.width - (spacing * 2) )), subitem: horizontalGroup, count: 3)
+            verticalGroup.interItemSpacing =  NSCollectionLayoutSpacing.fixed(spacing)
+            verticalGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: 0, trailing: spacing)
+            
+            let section = NSCollectionLayoutSection(group: verticalGroup)
+            section.orthogonalScrollingBehavior = .groupPaging
+            return section
+        }
+        
+        return layout
     }
 }
 
@@ -53,6 +90,7 @@ extension AvatarsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AvatarsCollectionView.id, for: indexPath)
+        cell.backgroundColor = .black
         cell.layer.cornerRadius = 16
         cell.layer.cornerCurve = .continuous
         let avatarObject = Avatars.avatars[indexPath.row]

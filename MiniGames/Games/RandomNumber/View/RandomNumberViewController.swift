@@ -33,7 +33,7 @@ class RandomNumberViewController: UIViewController, GameProtocol {
         self.touchButtonDelegate?.requestResult()
         sender.isUserInteractionEnabled = false
     }
-
+    
     
     // MARK: Private funcs
     func addSceneToView() {
@@ -58,8 +58,6 @@ class RandomNumberViewController: UIViewController, GameProtocol {
         presenter?.getResult(score: result, index: index)
         button.isUserInteractionEnabled = true
     }
-    deinit {
-        print("Deinit")
-    }
+    
 }
 

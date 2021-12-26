@@ -17,17 +17,21 @@ protocol LinkedToGameVC: SKScene {
 
 class GameScene: SKScene, LinkedToGameVC {
     
+    weak var owner: GameProtocol?
     
-    var duration: TimeInterval = 0
     var bottle = SKSpriteNode()
     var rotateRec = UIRotationGestureRecognizer()
     var rotate: CGFloat = 1
-    var owner: GameProtocol?
     var players: [SingleUserModel]?
     let backgroundObject = SKNode()
     var playersObjects: [SKShapeNode] = []
     var circle = SKShapeNode()
     let circleRadius: CGFloat = 300
+    
+    //Flip values
+    let degree360: CGFloat = 6.28319
+    lazy var part = degree360 / CGFloat(players!.count)
+    lazy var stridedNubers = getNumberArray(start: degree360 * 4, stride: part)
     
     override func didMove(to view: SKView) {
         self.addChild(backgroundObject)
@@ -69,11 +73,10 @@ class GameScene: SKScene, LinkedToGameVC {
     
     func createUser(rect: CGRect, imageName: String) {
         let player = SKShapeNode(rect: CGRect(x: rect.origin.x , y: rect.origin.y, width: rect.width, height: rect.height) , cornerRadius: 16)
-        player.fillColor = .white
-        //player.fillTexture = SKTexture(imageNamed: imageName)
         let node = SKShapeNode(rect: player.frame, cornerRadius: 18)
         node.fillColor = .white
         node.fillTexture = SKTexture(imageNamed: imageName)
+        player.fillColor = .white
         player.addChild(node)
         self.playersObjects.append(player)
         backgroundObject.addChild(player)
@@ -99,37 +102,38 @@ class GameScene: SKScene, LinkedToGameVC {
     }
     
     
-    func getNumberArray(start: CGFloat, stride2: CGFloat) -> [CGFloat] {
+    func getNumberArray(start: CGFloat, stride: CGFloat) -> [CGFloat] {
         
         var array: [CGFloat] = []
-        var sum: CGFloat = 0
-        for _ in 0...players!.count * 25 {
+        var sum: CGFloat = start
+        let end = players!.count * 12
+        for _ in 0...end {
             array.append(sum)
-            sum += stride2
+            sum += stride
         }
         return array
     }
     
-    
-    func responseResult() {
-        let degree360: CGFloat = 6.28319
-        let part = degree360 / CGFloat(players!.count)
+    func setupValues() {
         
-        let stridedNubers = getNumberArray(start: degree360 * 4, stride2: part)
-        let randomNumber = Int.random(in: 0...stridedNubers.count - 1)
+    }
+    func responseResult() {
+        
+        let duration: TimeInterval = 3
+        
+        let randomNumber = Int.random(in: 0..<stridedNubers.count)
         
         let angle = CGFloat(stridedNubers[randomNumber] - part / 2)
-        
         let flip = Int(angle / degree360)
         let totalPrats = angle / part
         let res = players!.count * flip
         let winner = (Int(totalPrats) - res )
         
         
-        let action = SKAction.rotate(byAngle: angle, duration: 3)
+        let action = SKAction.rotate(byAngle: angle, duration: duration)
         action.timingMode = .easeInEaseOut
         bottle.run(action)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration + 1) { [weak self] in
             self?.zeroAngle()
             self?.owner?.sendResult(result: Double(winner), index: nil)
         }

@@ -77,11 +77,11 @@ class CoreData {
     //MARK: Transactions
     func updateModel(user: SingleUserModel) {
         let request: NSFetchRequest<SingleUserModel> = SingleUserModel.fetchRequest()
-        //request.predicate = NSPredicate(format: "id == %@",
         request.predicate = NSPredicate(format: "%K == %@", "id" , user.id! as CVarArg)
         
         do {
-            let users = try context.fetch(request)
+            try context.fetch(request)
+            self.saveContext()
         } catch {
             
         }

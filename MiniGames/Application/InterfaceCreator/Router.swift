@@ -23,6 +23,7 @@ protocol RouterProtocol: RouterStandart {
 //MARK: Навигация
 class Router: RouterProtocol {
   
+    //MARK: Properties
     var navigationController: UINavigationController?
     var moduleBuilder: ModuleBuilderProtocol?
     

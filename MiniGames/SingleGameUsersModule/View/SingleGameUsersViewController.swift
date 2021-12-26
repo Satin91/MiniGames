@@ -16,7 +16,7 @@ class SingleGameUsersViewController: UIViewController {
     
     //MARK: Properties
     var presenter: SingleGamePlayersPresenterProtocol!
-    lazy var createUserScreen = CreateSingleGameUser(frame: self.view.bounds, presentOn: self)
+    var createUserScreen: CreateSingleGameUserView?
     
     
     // MARK: Overriden funcs
@@ -32,10 +32,13 @@ class SingleGameUsersViewController: UIViewController {
     }
     
     @objc func rightBarButton() {
-        self.createUserScreen.show { name, avatar in
+        guard createUserScreen == nil else { return }
+        self.createUserScreen = CreateSingleGameUserView(owner: self.view)
+        self.createUserScreen!.show { name, avatar in
             self.presenter?.saveUser(name: name, avatar: avatar)
+            
         }
-
+        self.createUserScreen = nil
     }
     
     @IBAction func chooseAGame(_ sender: UIButton) {
@@ -78,9 +81,15 @@ extension SingleGameUsersViewController: UITableViewDataSource {
 
 extension SingleGameUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.removeUser(indexPath: indexPath) {
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+        
+        let object = presenter.players![indexPath.row]
+        object.isParticipant.toggle()
+        presenter.updateUser(index: indexPath)
+        guard let cell = tableView.cellForRow(at: indexPath) as? PlayersTableViewCell else { return }
+        cell.configureCell(player: object)
+//        presenter.removeUser(indexPath: indexPath) {
+//            //tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
     }
     
 }

@@ -13,25 +13,46 @@ class RegularTextField: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupTextField()
+        
     }
-    convenience init(placeholder: String) {
+    
+    
+    enum TextFieldType {
+        case regular
+        case filled
+    }
+    
+    convenience init(type: TextFieldType,placeholder: String) {
         self.init()
-        setupTextField()
-        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.MGSubTitle])
+        commonSetup()
+        switch type {
+        case .regular:
+            setupRegularTextField()
+        case .filled:
+            setupFilledTextField()
+        }
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.MGSubTitle, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular) ])
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    
-    func setupTextField() {
-        self.backgroundColor = .white
+    func commonSetup() {
         self.borderStyle = .none
-        self.textColor = .MGTitle
         self.layer.cornerCurve = .continuous
-        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = 12
+    }
+    
+    func setupFilledTextField() {
+        self.backgroundColor = .MGBackground
+        textColor = .MGFilledButton
+        font = .systemFont(ofSize: 18, weight: .semibold)
+    }
+    
+    func setupRegularTextField() {
+        self.backgroundColor = .white
+        textColor = .MGTitle
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
@@ -41,4 +62,5 @@ class RegularTextField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: 15, dy: 0)
     }
+   
 }

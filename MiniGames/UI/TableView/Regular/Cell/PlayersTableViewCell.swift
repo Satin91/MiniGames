@@ -23,6 +23,7 @@ class PlayersTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setupImage()
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,13 +33,17 @@ class PlayersTableViewCell: UITableViewCell {
     
     // MARK: Public funcs:
     public func configureCell(player: SingleUserModel) {
-        self.isIncludedImage.image = UIImage(named: "gamepad")
+        self.selectionStyle = .none
         self.playerNameLabel.text = player.name
         self.playerImage.image = UIImage(named: player.avatar!)
+        self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )
+        //self.isIncludedImage.image = player.isParticipant == true ? UIImage(named: "gamepad") : UIImage(named: "")
     }
     // MARK: Private funcs
     private func setupImage() {
         playerImage.layer.cornerRadius = Insets.standartCornerRadius
         playerImage.backgroundColor = .MGImageBackground
+        let gamePad = UIImage(named: "gamepad")
+        self.isIncludedImage.image = gamePad
     }
 }

@@ -13,9 +13,7 @@ class GameViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var gameView: UIView!
-    
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     
@@ -23,6 +21,8 @@ class GameViewController: UIViewController {
     var presenter: GamePresenterProtocol!
     var gameProtocol: GameProtocol!
     var playerResult: PlayersGameModel?
+    var currentGame: GameProtocol!
+    
     
     // MARK: Overriden funcs
     override func viewDidLoad() {
@@ -40,7 +40,6 @@ class GameViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setupCollectionViewLayout()
     }
- 
 }
 
 extension GameViewController: GameViewProtocol {
@@ -50,14 +49,15 @@ extension GameViewController: GameViewProtocol {
         self.collectionView.scrollToItem(at: toIndex, at: .centeredHorizontally, animated: true)
     }
     
-    func addGameToChildView(game: inout GameProtocol, presenter: GamePresenterProtocol, players: [SingleUserModel]?) {
-        game.presenter = presenter
-        game.players = players
-        guard let game = game as? UIViewController else { return }
-        addChild(game)
-        game.view.frame = gameView.bounds
-        gameView.addSubview(game.view)
-        game.didMove(toParent: self)
+    func addGameToChildView(game: GameProtocol, presenter: GamePresenterProtocol, players: [SingleUserModel]?) {
+        self.currentGame = game
+        currentGame.presenter = presenter
+        currentGame.players = players
+        guard let currentGame = game as? UIViewController else { return }
+        addChild(currentGame)
+        currentGame.view.frame = gameView.bounds
+        gameView.addSubview(currentGame.view)
+        currentGame.didMove(toParent: self)
     }
 }
 
