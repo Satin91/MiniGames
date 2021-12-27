@@ -16,12 +16,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .MGBackground
         
         // Do any additional setup after loading the view.
     }
     
     @IBAction func playOnOneDevice(_ sender: UIButton) {
-        // Отправляет в презентер запрос и запускает функцию из протокола
         presenter?.tappedOnButton(text: "Текст изменился :D")
     }
 }

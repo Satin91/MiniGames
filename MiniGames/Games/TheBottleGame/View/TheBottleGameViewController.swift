@@ -9,7 +9,9 @@ import UIKit
 import SpriteKit
 
 
-class RandomNumberViewController: UIViewController, GameProtocol {
+class TheBottleGameViewController: UIViewController, GameProtocol {
+  
+    var gameName: String { return "Игра в бутылочку" }
     
     // MARK: Outlets
     @IBOutlet weak var button: UIButton!

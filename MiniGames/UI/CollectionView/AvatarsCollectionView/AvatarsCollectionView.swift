@@ -20,11 +20,11 @@ class AvatarsCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         setupCollectionView()
+        backgroundColor = .white
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //  setupLayout()
         
     }
     
@@ -90,14 +90,14 @@ extension AvatarsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AvatarsCollectionView.id, for: indexPath)
-        cell.backgroundColor = .black
         cell.layer.cornerRadius = 16
         cell.layer.cornerCurve = .continuous
         let avatarObject = Avatars.avatars[indexPath.row]
         let avatar = UIImageView(image: UIImage(named: avatarObject))
         avatar.frame = cell.bounds
         cell.backgroundColor = .MGImageBackground
-        cell.addSubview(avatar)
+        cell.backgroundView = avatar
+        //cell.addSubview(avatar)
         
         return cell
     }

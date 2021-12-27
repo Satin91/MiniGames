@@ -37,12 +37,13 @@ extension ListOfGamesViewController: ListOfGamesViewProtocol {
 
 extension ListOfGamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return presenter?.games?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GamesCell", for: indexPath)
-        cell.textLabel?.text = "Game \(indexPath.row)"
+        let game = presenter!.games![indexPath.row]
+        cell.textLabel?.text = game.gameName
         return cell
     }
     

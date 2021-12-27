@@ -28,16 +28,16 @@ class PlayersTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
     
     // MARK: Public funcs:
     public func configureCell(player: SingleUserModel) {
         self.selectionStyle = .none
+        self.playerNameLabel.font = .MGFont(size: 16, weight: .medium)
+        self.playerNameLabel.textColor = .MGTitle
         self.playerNameLabel.text = player.name
         self.playerImage.image = UIImage(named: player.avatar!)
         self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )
-        //self.isIncludedImage.image = player.isParticipant == true ? UIImage(named: "gamepad") : UIImage(named: "")
     }
     // MARK: Private funcs
     private func setupImage() {

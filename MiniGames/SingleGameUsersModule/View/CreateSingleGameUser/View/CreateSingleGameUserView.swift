@@ -20,16 +20,8 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     private var completion: ((String,String)-> Void)?
     private var avatarName: String = "user1"
     private var playerName: String = "Новый игрок"
-    var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .MGTitle
-        label.font = .systemFont(ofSize: 18)
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        return label
-    }()
+    var descriptionLabel = RegularLabel(size: 18, weight: .regular)
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -83,6 +75,7 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     
     private func setupLabel() {
         descriptionLabel.text = "Дайте имя новому игроку и выберите аватар."
+        descriptionLabel.textAlignment = .center
         addSubview(descriptionLabel)
     }
     

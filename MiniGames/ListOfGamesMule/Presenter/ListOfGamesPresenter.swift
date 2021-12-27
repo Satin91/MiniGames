@@ -12,6 +12,7 @@ protocol ListOfGamesViewProtocol: AnyObject {
 }
 protocol ListOfGamesPresenterProtocol: AnyObject {
     func selectGame(indexPath: IndexPath)
+    var games: [GameProtocol]? { get set }
     init(view: ListOfGamesViewProtocol, router: RouterProtocol)
 }
 
@@ -20,14 +21,18 @@ class ListOfGamesPresenter: ListOfGamesPresenterProtocol {
     
     private var router: RouterProtocol?
     weak var view: ListOfGamesViewProtocol?
+    var games: [GameProtocol]? = [TheBottleGameViewController(),RandomNumberViewController()]
     
     required init(view: ListOfGamesViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
-
     }
+    
+   
+    
     func selectGame(indexPath: IndexPath) {
-        router?.pushToGameViewController(game: RandomNumberViewController())
+        guard let game = games?[indexPath.row] else { return }
+        router?.pushToGameViewController(game: game)
     }
     
 }

@@ -14,17 +14,17 @@ class FilledButton: UIButton {
         super.init(frame: frame)
         setupButton()
     }
-  
-    
-    func setupButton() {
-        self.backgroundColor = .MGFilledButton
-        self.setTitleColor(.MGTitle, for: .normal)
-        self.layer.cornerRadius = 8
-        self.layer.cornerCurve = .continuous
-    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupButton()
+    }
+    
+    func setupButton() {
+        self.backgroundColor = .MGFilledButton
+        self.setTitleColor(.MGTitle, for: .normal)
+        self.layer.cornerRadius = Insets.standartCornerRadius
+        self.layer.cornerCurve = .continuous
+        self.titleLabel?.font = .MGFont(size: 16, weight: .medium)
     }
 }

@@ -31,7 +31,7 @@ class RegularTextField: UITextField {
         case .filled:
             setupFilledTextField()
         }
-        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.MGSubTitle, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular) ])
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.MGSubTitle, NSAttributedString.Key.font: UIFont.MGFont(size: 18, weight: .regular) ])
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ class RegularTextField: UITextField {
     func setupFilledTextField() {
         self.backgroundColor = .MGBackground
         textColor = .MGFilledButton
-        font = .systemFont(ofSize: 18, weight: .semibold)
+        font = .MGFont(size: 18, weight: .medium)
     }
     
     func setupRegularTextField() {

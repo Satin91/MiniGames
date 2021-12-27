@@ -11,5 +11,7 @@ protocol GameProtocol: AnyObject {
     // Обязательно представлять этот протокол как Weak
     var presenter: GamePresenterProtocol? { get set }
     var players: [SingleUserModel]? { get set }
+    var gameName: String { get }
     func sendResult(result: Double, index: Int?)
+    
 }

@@ -36,7 +36,6 @@ class SingleGameUsersViewController: UIViewController {
         self.createUserScreen = CreateSingleGameUserView(owner: self.view)
         self.createUserScreen!.show { name, avatar in
             self.presenter?.saveUser(name: name, avatar: avatar)
-            
         }
         self.createUserScreen = nil
     }
@@ -50,12 +49,16 @@ class SingleGameUsersViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
+        tableView.dropDelegate = self
         tableView.register(UINib(nibName: "PlayersTableViewCell", bundle: nil) , forCellReuseIdentifier: PlayersTableViewCell.id)
     }
     
     private func setupNavBar() {
-        self.navigationItem.setMGButtonItem(imageName: "person.fill.badge.plus", position: .right, target: self, action: #selector(rightBarButton))
-        self.navigationItem.setMGButtonItem(imageName: "arrow.backward", position: .left, target: self, action: #selector(leftBarButton))
+        title = "Игроки"
+        self.navigationItem.setMGButtonItem(imageName: "addUser", position: .right, target: self, action: #selector(rightBarButton))
+        self.navigationItem.setMGButtonItem(imageName: "back", position: .left, target: self, action: #selector(leftBarButton))
     }
     
     private func setupView() {
@@ -72,24 +75,30 @@ extension SingleGameUsersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.id, for: indexPath) as! PlayersTableViewCell
-        
-        let object = presenter.players?[indexPath.row]
-        cell.configureCell(player: object!)
+        let player = presenter.players![indexPath.row]
+        cell.configureCell(player: player)
         return cell
     }
 }
 
 extension SingleGameUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let object = presenter.players![indexPath.row]
-        object.isParticipant.toggle()
+        let player = presenter.players![indexPath.row]
+        player.isParticipant.toggle()
         presenter.updateUser(index: indexPath)
         guard let cell = tableView.cellForRow(at: indexPath) as? PlayersTableViewCell else { return }
-        cell.configureCell(player: object)
-//        presenter.removeUser(indexPath: indexPath) {
-//            //tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
+        cell.configureCell(player: player)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "", handler: {a,b,c in
+            self.presenter.removeUser(indexPath: indexPath) {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        })
+        deleteAction.image = UIImage(systemName: "trash" )
+        deleteAction.backgroundColor = .MGSaturatedImage
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
 }
@@ -104,3 +113,34 @@ extension SingleGameUsersViewController: SingleGamePlayersViewProtocol {
 }
 
 
+//MARK: - DRAG & DROP DELEGATE
+
+extension SingleGameUsersViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let mover = presenter.players!.remove(at: sourceIndexPath.row)
+        presenter.players!.insert(mover, at: destinationIndexPath.row)
+    }
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let dragItem = UIDragItem(itemProvider: NSItemProvider())
+        dragItem.localObject = presenter.players![indexPath.row]
+        
+        return [dragItem]
+    }
+}
+
+extension SingleGameUsersViewController: UITableViewDropDelegate {
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        
+        if session.localDragSession != nil {
+            
+            return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+        
+        return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+    }
+}

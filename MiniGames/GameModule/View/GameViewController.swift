@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        
+        view.backgroundColor = .MGBackground
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,16 +69,13 @@ extension GameViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayersCell", for: indexPath)
-        for i in cell.subviews {
-            i.removeFromSuperview()
-        }
         guard let player = presenter.players?[indexPath.row] else { return cell }
         let image = UIImageView(image: UIImage(named: player.avatar!))
         image.frame = cell.bounds
         image.contentMode = .scaleAspectFit
         cell.backgroundColor = .white
         cell.layer.cornerRadius = 18
-        cell.addSubview(image)
+        cell.backgroundView = image
         return cell
     }
     

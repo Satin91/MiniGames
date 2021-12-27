@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let navigationController = UINavigationController()
+        navigationController.navigationBar.customNavBarAppearance()
         let builder = ModuleBuilder()
         let router = Router(navigationController: navigationController, moduleBuilder: builder)
         router.initialViewController()
