@@ -46,7 +46,7 @@ extension UIView {
     }
     
     
-    //MARK: Close animations
+    //MARK: Close animation
     func closeAnimation() {
         UIView.animate(withDuration: 0.3) {
             self.alpha = 0

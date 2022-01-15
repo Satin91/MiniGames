@@ -18,8 +18,8 @@ class RegularLabel: UILabel {
     
     convenience init(size: CGFloat, weight: UIFont.Weight? = .regular) {
         self.init()
-        self.textColor = .MGTitle
-        self.font = .MGFont(size: 18, weight: weight!)
+    //    self.textColor = .MGTitle
+        self.font = .MGFont(size: size, weight: weight!)
         self.textAlignment = .left
         self.numberOfLines = 0
     }
@@ -28,7 +28,6 @@ class RegularLabel: UILabel {
         super.init(coder: coder)
         setupLabel()
     }
-    
     
     
     func setupLabel() {

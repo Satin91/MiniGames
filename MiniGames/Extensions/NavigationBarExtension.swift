@@ -20,7 +20,6 @@ extension UINavigationItem {
         customView.layer.cornerRadius = size / 2
         customView.backgroundColor = .MGSecondaryImageBackground
         
-        
         let button = UIButton(type: .system)
         button.frame = customView.bounds
         button.setImage(UIImage(named: imageName) , for: .normal)

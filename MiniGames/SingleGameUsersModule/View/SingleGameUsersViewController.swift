@@ -108,8 +108,6 @@ extension SingleGameUsersViewController: SingleGamePlayersViewProtocol {
     func addUser() {
         tableView.insertRows(at: [IndexPath(row: presenter.players!.count - 1, section: 0)], with: .automatic)
     }
-    
-    
 }
 
 

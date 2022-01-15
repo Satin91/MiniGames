@@ -41,8 +41,6 @@ class AvatarsCollectionView: UICollectionView {
     
     
     // MARK: Private funcs
-    
-    
     private func setupCollectionView() {
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: AvatarsCollectionView.id)
         collectionViewLayout = createLayout()
