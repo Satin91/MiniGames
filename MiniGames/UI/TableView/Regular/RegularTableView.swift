@@ -23,6 +23,7 @@ class RegularTableView: UITableView {
     
     func setupTableView() {
         self.separatorColor = .MGSaturatedImage.withAlphaComponent(0.4)
+        self.separatorStyle = .singleLine
         self.backgroundColor = .clear
         self.rowHeight = 60
     }

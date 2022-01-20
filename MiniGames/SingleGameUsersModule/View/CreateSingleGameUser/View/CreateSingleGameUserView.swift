@@ -13,7 +13,7 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     
     
     weak var owner: UIView!
-    private var nameTextField = RegularTextField(type: .filled, placeholder: "Введите имя")
+    private var nameTextField = RegularTextField(type: .filled, placeholder: "Введите имя", image: nil)
     private var collectionView: AvatarsCollectionView!
     private var createButton: FilledButton!
     private var closeButton: CircleButton!
@@ -21,7 +21,7 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     private var avatarName: String = "user1"
     private var playerName: String = "Новый игрок"
     var descriptionLabel = RegularLabel(size: 18, weight: .regular)
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -159,15 +159,24 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
 }
 
 extension CreateSingleGameUserView: UICollectionViewDelegate {
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let object = Avatars.avatars[indexPath.row]
+        removeSelection(collectionView: collectionView)
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.layer.borderWidth = 2
+        cell?.layer.borderColor = UIColor.MGSaturatedImage.cgColor
+        
         self.avatarName = object
+    }
+    
+    func removeSelection(collectionView: UICollectionView) {
+        for row in collectionView.visibleCells {
+            row.layer.borderColor = UIColor.clear.cgColor
+        }
     }
 }

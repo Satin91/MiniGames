@@ -90,13 +90,13 @@ extension AvatarsCollectionView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AvatarsCollectionView.id, for: indexPath)
         cell.layer.cornerRadius = 16
         cell.layer.cornerCurve = .continuous
+        
         let avatarObject = Avatars.avatars[indexPath.row]
         let avatar = UIImageView(image: UIImage(named: avatarObject))
         avatar.frame = cell.bounds
         cell.backgroundColor = .MGImageBackground
         cell.backgroundView = avatar
-        //cell.addSubview(avatar)
-        
+        cell.clipsToBounds = true
         return cell
     }
 }

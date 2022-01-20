@@ -8,19 +8,55 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 class FilledButton: UIButton {
+    
+    enum ColorStyle {
+        case standart
+        case dark
+    }
+    
+    @IBInspectable var colorStyle: CGFloat = 0 {
+        willSet {
+            switch newValue {
+            case 0:
+                standartButton()
+            case 1:
+                darkButton()
+            default:
+                break
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupButton()
+        commonSetup()
+    }
+    
+    convenience init(style: ColorStyle) {
+        self.init()
+        switch style {
+        case .standart:
+            standartButton()
+        case .dark:
+            darkButton()
+        }
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupButton()
+        commonSetup()
     }
-    
-    func setupButton() {
+    func darkButton() {
+        self.backgroundColor = .MGTitle
+        self.setTitleColor(.MGBackground, for: .normal)
+    }
+    func standartButton() {
+        self.backgroundColor = .MGFilledButton
+        self.setTitleColor(.MGTitle, for: .normal)
+    }
+    func commonSetup() {
         self.backgroundColor = .MGFilledButton
         self.setTitleColor(.MGTitle, for: .normal)
         self.layer.cornerRadius = Insets.standartCornerRadius

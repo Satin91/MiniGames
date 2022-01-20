@@ -6,23 +6,46 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var helloLabel: UILabel!
+    @IBOutlet weak var headerLabel: UILabel!
     
+    
+    //MARK: Properties
     var presenter: MainPresenterProtocol?
     
+    
+    //MARK: Override funcs
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .MGBackground
-        
-        // Do any additional setup after loading the view.
+        setupView()
+        setupHeaderLabel()
     }
     
+    
+    //MARK: Action funcs
     @IBAction func playOnOneDevice(_ sender: UIButton) {
-        presenter?.tappedOnButton(text: "Текст изменился :D")
+        presenter?.tappedOnSingleGameButton(text: "Текст изменился :D")
+    }
+    
+    @IBAction func networkPlay(_ sender: UIButton) {
+        presenter?.tappedOnNetworkGame()
+    }
+    
+    
+    //MARK: Private funcs
+    private func setupView() {
+        view.backgroundColor = .MGBackground
+    }
+    
+    private func setupHeaderLabel() {
+        headerLabel.text = "Mini games"
+        headerLabel.textColor = .MGTitle
+        headerLabel.font = .MGKlasikFont(size: 46)
     }
 }
 

@@ -18,6 +18,7 @@ class PlayersTableViewCell: UITableViewCell {
     // MARK: Properties
     static let id = "PlayersTableViewCell"
     
+    
     // MARK: Overriden funcs
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,8 +31,9 @@ class PlayersTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    
     // MARK: Public funcs:
-    public func configureCell(player: SingleUserModel) {
+    public func configureSingleUserCell(player: SingleUserModel) {
         self.selectionStyle = .none
         self.playerNameLabel.font = .MGFont(size: 16, weight: .medium)
         self.playerNameLabel.textColor = .MGTitle
@@ -39,6 +41,19 @@ class PlayersTableViewCell: UITableViewCell {
         self.playerImage.image = UIImage(named: player.avatar!)
         self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )
     }
+    
+    public func configureFriendsCell(player: NetworkUserModel) {
+        self.selectionStyle = .none
+        self.playerNameLabel.font = .MGFont(size: 16, weight: .medium)
+        self.playerNameLabel.textColor = .MGTitle
+        self.playerNameLabel.text = player.name
+        self.playerImage.image = UIImage(named: player.avatar)
+        self.isIncludedImage.image = UIImage(systemName: "chevron.compact.right")
+        self.isIncludedImage.tintColor = .MGSubTitle
+//        self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )
+    }
+    
+    
     // MARK: Private funcs
     private func setupImage() {
         playerImage.layer.cornerRadius = Insets.standartCornerRadius

@@ -62,6 +62,7 @@ class SingleGamePlayersPresenter: SingleGamePlayersPresenterProtocol {
         guard let user = players?[index.row] else { return }
         CoreData.shared.updateModel(user: user)
     }
+    
     func chooseAGame() {
         router?.pushToListOfGamesViewController()
     }

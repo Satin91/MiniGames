@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="MiniGames" customModuleProvider="target">
             <connections>
+                <outlet property="headerLabel" destination="dkd-Jq-mKx" id="4Uy-h3-Hi2"/>
                 <outlet property="helloLabel" destination="dkd-Jq-mKx" id="2g0-Ey-8YO"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Tlb-Vb-zUA"/>
             </connections>
@@ -26,30 +27,54 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjg-PF-k57" customClass="FilledButton" customModule="MiniGames" customModuleProvider="target">
-                    <rect key="frame" x="44" y="568" width="326" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="IEF-zb-I8a"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Играть на одном устройстве"/>
-                    <connections>
-                        <action selector="playOnOneDevice:" destination="-1" eventType="touchUpInside" id="PF8-2P-m7Z"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kz0-Z4-YiO">
+                    <rect key="frame" x="44" y="566" width="326" height="96"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjg-PF-k57" customClass="FilledButton" customModule="MiniGames" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="326" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="IEF-zb-I8a"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Играть на одном устройстве"/>
+                            <connections>
+                                <action selector="playOnOneDevice:" destination="-1" eventType="touchUpInside" id="PF8-2P-m7Z"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6o-oq-TdF" customClass="FilledButton" customModule="MiniGames" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="52" width="326" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Bgp-yH-Xvz"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Играть по интернету"/>
+                            <connections>
+                                <action selector="networkPlay:" destination="-1" eventType="touchUpInside" id="V9I-TI-mJ6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Rjg-PF-k57" secondAttribute="trailing" constant="44" id="8S5-dy-gft"/>
+                <constraint firstItem="kz0-Z4-YiO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="44" id="6gS-QP-Hbt"/>
                 <constraint firstItem="dkd-Jq-mKx" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="PbK-fB-rBu"/>
                 <constraint firstItem="dkd-Jq-mKx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="115" id="WGL-Wg-pR2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Rjg-PF-k57" secondAttribute="bottom" constant="250" id="iNT-aT-5vH"/>
-                <constraint firstItem="Rjg-PF-k57" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="44" id="zra-uN-jEv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kz0-Z4-YiO" secondAttribute="trailing" constant="44" id="oIf-CQ-htd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kz0-Z4-YiO" secondAttribute="bottom" constant="200" id="r4X-Y7-fqc"/>
             </constraints>
             <point key="canvasLocation" x="139" y="121"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Rjg-PF-k57">
+            <size key="intrinsicContentSize" width="218.5" height="31"/>
+        </designable>
+        <designable name="w6o-oq-TdF">
+            <size key="intrinsicContentSize" width="165" height="31"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -10,15 +10,15 @@ import UIKit
 protocol ListOfGamesViewProtocol: AnyObject {
     
 }
+
 protocol ListOfGamesPresenterProtocol: AnyObject {
-    func selectGame(indexPath: IndexPath)
     var games: [GameProtocol]? { get set }
+    func selectGame(indexPath: IndexPath)
     init(view: ListOfGamesViewProtocol, router: RouterProtocol)
 }
 
 class ListOfGamesPresenter: ListOfGamesPresenterProtocol {
-  
-    
+
     private var router: RouterProtocol?
     weak var view: ListOfGamesViewProtocol?
     var games: [GameProtocol]? = [TheBottleGameViewController(),RandomNumberViewController()]
@@ -28,7 +28,6 @@ class ListOfGamesPresenter: ListOfGamesPresenterProtocol {
         self.router = router
     }
     
-   
     
     func selectGame(indexPath: IndexPath) {
         guard let game = games?[indexPath.row] else { return }

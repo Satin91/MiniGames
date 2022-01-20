@@ -13,6 +13,10 @@ protocol RouterStandart {
 }
 protocol RouterProtocol: RouterStandart {
     func initialViewController() // Начальный контроллер
+    func pushToLoginViewController()
+    func showSingUpViewController()
+    func pushToNetworkGameMainPage()
+    func pushToPrivateChatViewController(currentUser: NetworkUserModel, companion: NetworkUserModel)
     func pushToUsersList()
     func pushToListOfGamesViewController()
     func pushToGameViewController(game: GameProtocol)
@@ -22,6 +26,8 @@ protocol RouterProtocol: RouterStandart {
 
 //MARK: Навигация
 class Router: RouterProtocol {
+   
+    
   
     //MARK: Properties
     var navigationController: UINavigationController?
@@ -42,6 +48,38 @@ class Router: RouterProtocol {
         navigationController.viewControllers = [mainView]
     }
  
+    //MARK: Login
+    func pushToLoginViewController() {
+        guard let navigationController = navigationController else { return }
+        guard let loginViewController = moduleBuilder?.createLoginModule(router: self) else { return }
+        navigationController.pushViewController(loginViewController, animated: true)
+    }
+    
+    
+    //MARK: SingUp
+    func showSingUpViewController() {
+        guard let navigationController = navigationController else { return }
+        guard let singUpViewController = moduleBuilder?.createSingUpModule(router: self) else { return }
+        navigationController.pushViewController(singUpViewController, animated: true)
+    }
+    
+    
+    
+    //MARK: Network game main page
+    func pushToNetworkGameMainPage() {
+        guard let navigationController = navigationController else { return }
+        guard let networkGameMainPage = moduleBuilder?.createNetworkGameMainPageModule(router: self) else { return }
+        navigationController.pushViewController(networkGameMainPage, animated: true)
+    }
+    
+    
+    //MARK: Private chat
+    func pushToPrivateChatViewController(currentUser: NetworkUserModel, companion: NetworkUserModel) {
+        guard let navigationController = navigationController else { return }
+        guard let privateChat = moduleBuilder?.createPrivateChatModule(router: self, currentUser: currentUser, companion: companion) else { return }
+        navigationController.pushViewController(privateChat, animated: true)
+        
+    }
     
     //MARK: UserList
     func pushToUsersList() {

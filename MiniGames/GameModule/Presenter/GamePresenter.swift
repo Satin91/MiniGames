@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+//MARK: Protocols
 protocol GameViewProtocol: AnyObject {
     var playerResult: PlayersGameModel? { get set }
     func moveCollectionView(toIndex: IndexPath)
@@ -70,7 +72,7 @@ class GamePresenter: GamePresenterProtocol {
         CoreData.shared.requestUsers { result in
             switch result {
             case .success(let players):
-                self.players = players
+                self.players = players.filter({ $0.isParticipant == true })
             case .failure(let error):
                 print(error.localizedDescription)
             }

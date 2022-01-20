@@ -10,7 +10,7 @@ import UIKit
 class ListOfGamesViewController: UIViewController {
     
     // MARK: Outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: RegularTableView!
     
     
     // MARK: Properties
@@ -21,6 +21,7 @@ class ListOfGamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupView()
     }
     
     
@@ -29,6 +30,11 @@ class ListOfGamesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GamesCell")
+        tableView.backgroundColor = .MGBackground
+    }
+    
+    private func setupView() {
+        
     }
 }
 extension ListOfGamesViewController: ListOfGamesViewProtocol {

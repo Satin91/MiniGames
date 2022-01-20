@@ -9,15 +9,7 @@ import UIKit
 import CoreData
 
 class CoreData {
-    // MARK: Outlets
-    
-    // MARK: Overriden funcs
-    // MARK: Action funcs
-    // MARK: Notifcation observers
-    // MARK: Public funcs:
-    // MARK: Private funcs
-    // MARK: Delegate funcs
-    // MARK: Class(Static) funcs
+  
     
     // MARK: Properties
     static var shared = CoreData()
@@ -48,8 +40,23 @@ class CoreData {
     }
     
     
+    func saveNetworkUser(name: String?,avatar: String,email: String,id: String, completion: (NetworkUser?, Bool) -> Void ) {
+        
+        let user = NetworkUser(context: context)
+        user.name = (name != nil && name != "") ? name: "Неизвестный игрок"
+        user.id = id
+        user.avatar = avatar
+        do {
+            try self.context.save()
+            completion(user, true)
+        } catch let error{
+            print(error.localizedDescription)
+            completion(user, false)
+        }
+    }
     
     func saveUser(name: String?,avatar: String, completion: (SingleUserModel?, Bool) -> Void ) {
+        
         let user = SingleUserModel(context: context)
         user.name = (name != nil && name != "") ? name: "Новый игрок"
         user.id = UUID()

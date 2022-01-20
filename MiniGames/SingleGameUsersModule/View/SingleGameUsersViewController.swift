@@ -17,16 +17,25 @@ class SingleGameUsersViewController: UIViewController {
     //MARK: Properties
     var presenter: SingleGamePlayersPresenterProtocol!
     var createUserScreen: CreateSingleGameUserView?
+    var backgroundImage: UIImageView!
     
     
     // MARK: Overriden funcs
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBackgroundImage()
         setupTableView()
         setupNavBar()
         setupView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
+    
+    //MARK: Action funcs
     @objc func leftBarButton() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -63,6 +72,14 @@ class SingleGameUsersViewController: UIViewController {
     
     private func setupView() {
         self.view.backgroundColor = .MGBackground
+        view.clipsToBounds = true
+    }
+    
+    private func setupBackgroundImage() {
+        backgroundImage = UIImageView(image: UIImage(named: "aboveClouds"))
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.frame = CGRect(x: 0, y: view.bounds.height * 0.65, width: view.bounds.width, height: view.bounds.height * 0.35)
+        view.insertSubview(backgroundImage, at: 0)
     }
 }
 
@@ -76,18 +93,19 @@ extension SingleGameUsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.id, for: indexPath) as! PlayersTableViewCell
         let player = presenter.players![indexPath.row]
-        cell.configureCell(player: player)
+        cell.configureSingleUserCell(player: player)
         return cell
     }
 }
 
 extension SingleGameUsersViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let player = presenter.players![indexPath.row]
         player.isParticipant.toggle()
         presenter.updateUser(index: indexPath)
         guard let cell = tableView.cellForRow(at: indexPath) as? PlayersTableViewCell else { return }
-        cell.configureCell(player: player)
+        cell.configureSingleUserCell(player: player)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

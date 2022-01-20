@@ -13,8 +13,10 @@ class TheBottleGameViewController: UIViewController, GameProtocol {
   
     var gameName: String { return "Игра в бутылочку" }
     
+    
     // MARK: Outlets
     @IBOutlet weak var button: UIButton!
+    
     
     // MARK: Properties
     weak var gameViewProtocol: GameViewProtocol!

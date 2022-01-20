@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750459682796328500D47077 /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750459672796328500D47077 /* SingUpViewController.swift */; };
+		7504596E279632EA00D47077 /* SingUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7504596D279632EA00D47077 /* SingUpViewController.xib */; };
+		75045970279633AA00D47077 /* SingUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504596F279633AA00D47077 /* SingUpPresenter.swift */; };
 		750746DB276F033500597005 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746DA276F033500597005 /* ModuleBuilder.swift */; };
 		750746DD276F039500597005 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746DC276F039500597005 /* Router.swift */; };
 		750746DF276F05FD00597005 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746DE276F05FD00597005 /* MainPresenter.swift */; };
@@ -24,6 +27,10 @@
 		7518979027704DEB00B666F2 /* TheBottleGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518978E27704DEB00B666F2 /* TheBottleGameViewController.swift */; };
 		7518979127704DEB00B666F2 /* TheBottleGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7518978F27704DEB00B666F2 /* TheBottleGameViewController.xib */; };
 		75189798277074A900B666F2 /* GameCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75189797277074A900B666F2 /* GameCollectionView.swift */; };
+		7526AF892797035A0080E693 /* NetworkGameMainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7526AF882797035A0080E693 /* NetworkGameMainPageViewController.xib */; };
+		7526AF8B27970ACD0080E693 /* SelectAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7526AF8A27970ACD0080E693 /* SelectAvatarView.swift */; };
+		7526AF8E27971A8F0080E693 /* SignUpUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7526AF8D27971A8E0080E693 /* SignUpUserModel.swift */; };
+		7526AF91279742D70080E693 /* UserSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7526AF90279742D60080E693 /* UserSearchView.swift */; };
 		752ECF2E276F1FF9007BE008 /* SingleGameUsersCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 752ECF2C276F1FF9007BE008 /* SingleGameUsersCoreData.xcdatamodeld */; };
 		752ECF30276F2910007BE008 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ECF2F276F2910007BE008 /* CoreData.swift */; };
 		755889212772F53D0063BF16 /* PlayersGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755889202772F53D0063BF16 /* PlayersGameModel.swift */; };
@@ -47,10 +54,30 @@
 		756A23222777617A00A7063C /* AvatarsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756A23212777617A00A7063C /* AvatarsCollectionView.swift */; };
 		75716890277A0F73007E7FEF /* RandomNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571688E277A0F73007E7FEF /* RandomNumberViewController.swift */; };
 		75716891277A0F73007E7FEF /* RandomNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7571688F277A0F73007E7FEF /* RandomNumberViewController.xib */; };
+		759590202795FFD30017D86E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7595901F2795FFD30017D86E /* Lottie */; };
+		75959025279612C90017D86E /* NetworkGameMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75959024279612C90017D86E /* NetworkGameMainPageViewController.swift */; };
+		75959028279613100017D86E /* NetworkGameMainPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75959027279613100017D86E /* NetworkGameMainPagePresenter.swift */; };
+		7595902B279613E30017D86E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595902A279613E30017D86E /* LoginViewController.swift */; };
+		7595902D279614040017D86E /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595902C279614040017D86E /* LoginPresenter.swift */; };
+		75959034279618650017D86E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75959033279618650017D86E /* LoginViewController.xib */; };
 		759A0030277105EF005C3C3E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759A002F277105EF005C3C3E /* GameScene.swift */; };
 		75AFDA5227785369000A03BD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFDA5127785369000A03BD /* UIViewExtension.swift */; };
 		75AFDA5527787A08000A03BD /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFDA5427787A08000A03BD /* CircleButton.swift */; };
 		75AFDA572778AD5E000A03BD /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFDA562778AD5E000A03BD /* UIImageViewExtension.swift */; };
+		75C90DF427975A9D0060A471 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75C90DF327975A9D0060A471 /* FirebaseFirestore */; };
+		75D46AE12796249B009B226F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE02796249B009B226F /* FirebaseAnalytics */; };
+		75D46AE32796249B009B226F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE22796249B009B226F /* FirebaseAuth */; };
+		75D46AE52796249B009B226F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE42796249B009B226F /* FirebaseDatabase */; };
+		75D46AE72796249B009B226F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE62796249B009B226F /* FirebaseMessaging */; };
+		75D46AE92796249B009B226F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE82796249B009B226F /* FirebaseStorage */; };
+		75D46AEF279626B9009B226F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D46AEE279626B9009B226F /* GoogleService-Info.plist */; };
+		75E1105F27986D1F009C5AC5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 75E1105E27986D1F009C5AC5 /* MessageKit */; };
+		75E1106227986D8A009C5AC5 /* PrivateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E1106127986D8A009C5AC5 /* PrivateChatViewController.swift */; };
+		75E1106427986DA0009C5AC5 /* PrivateChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E1106327986DA0009C5AC5 /* PrivateChatPresenter.swift */; };
+		75E1106827988C76009C5AC5 /* PrivateChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E1106727988C75009C5AC5 /* PrivateChatMessageModel.swift */; };
+		75E1106A2798A93D009C5AC5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E110692798A93D009C5AC5 /* DateExtension.swift */; };
+		75E1106C2798C536009C5AC5 /* MessageKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E1106B2798C535009C5AC5 /* MessageKitExtensions.swift */; };
+		75E1106F2798C840009C5AC5 /* lf30_editor_vxqlcgjk.json in Resources */ = {isa = PBXBuildFile; fileRef = 75E1106E2798C840009C5AC5 /* lf30_editor_vxqlcgjk.json */; };
 		75E38F3827770605003CD190 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E38F3727770605003CD190 /* UIColorExtension.swift */; };
 		75E38F3A277709FB003CD190 /* RegularTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E38F39277709FB003CD190 /* RegularTableView.swift */; };
 		75E38F3C27770EBB003CD190 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E38F3B27770EBB003CD190 /* NavigationBarExtension.swift */; };
@@ -61,9 +88,14 @@
 		75E794B0276EF70D0088E34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E794AF276EF70D0088E34D /* Assets.xcassets */; };
 		75E794B3276EF70D0088E34D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E794B1276EF70D0088E34D /* LaunchScreen.storyboard */; };
 		75E794BC276F019F0088E34D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75E794BB276F019F0088E34D /* MainViewController.xib */; };
+		75F08BBB279777420050AE76 /* NetworkUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F08BBA279777420050AE76 /* NetworkUserModel.swift */; };
+		75F08BBD279782D20050AE76 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F08BBC279782D20050AE76 /* Firebase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		750459672796328500D47077 /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
+		7504596D279632EA00D47077 /* SingUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingUpViewController.xib; sourceTree = "<group>"; };
+		7504596F279633AA00D47077 /* SingUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpPresenter.swift; sourceTree = "<group>"; };
 		750746DA276F033500597005 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		750746DC276F039500597005 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		750746DE276F05FD00597005 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -81,6 +113,10 @@
 		7518978E27704DEB00B666F2 /* TheBottleGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheBottleGameViewController.swift; sourceTree = "<group>"; };
 		7518978F27704DEB00B666F2 /* TheBottleGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TheBottleGameViewController.xib; sourceTree = "<group>"; };
 		75189797277074A900B666F2 /* GameCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionView.swift; sourceTree = "<group>"; };
+		7526AF882797035A0080E693 /* NetworkGameMainPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetworkGameMainPageViewController.xib; sourceTree = "<group>"; };
+		7526AF8A27970ACD0080E693 /* SelectAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAvatarView.swift; sourceTree = "<group>"; };
+		7526AF8D27971A8E0080E693 /* SignUpUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserModel.swift; sourceTree = "<group>"; };
+		7526AF90279742D60080E693 /* UserSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchView.swift; sourceTree = "<group>"; };
 		752ECF2D276F1FF9007BE008 /* SingleUserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SingleUserModel.xcdatamodel; sourceTree = "<group>"; };
 		752ECF2F276F2910007BE008 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		755889202772F53D0063BF16 /* PlayersGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersGameModel.swift; sourceTree = "<group>"; };
@@ -104,10 +140,22 @@
 		756A23212777617A00A7063C /* AvatarsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsCollectionView.swift; sourceTree = "<group>"; };
 		7571688E277A0F73007E7FEF /* RandomNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberViewController.swift; sourceTree = "<group>"; };
 		7571688F277A0F73007E7FEF /* RandomNumberViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomNumberViewController.xib; sourceTree = "<group>"; };
+		75959024279612C90017D86E /* NetworkGameMainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGameMainPageViewController.swift; sourceTree = "<group>"; };
+		75959027279613100017D86E /* NetworkGameMainPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGameMainPagePresenter.swift; sourceTree = "<group>"; };
+		7595902A279613E30017D86E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7595902C279614040017D86E /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		75959033279618650017D86E /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		759A002F277105EF005C3C3E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		75AFDA5127785369000A03BD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		75AFDA5427787A08000A03BD /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		75AFDA562778AD5E000A03BD /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		75D46AEE279626B9009B226F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75E1106127986D8A009C5AC5 /* PrivateChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatViewController.swift; sourceTree = "<group>"; };
+		75E1106327986DA0009C5AC5 /* PrivateChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatPresenter.swift; sourceTree = "<group>"; };
+		75E1106727988C75009C5AC5 /* PrivateChatMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatMessageModel.swift; sourceTree = "<group>"; };
+		75E110692798A93D009C5AC5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		75E1106B2798C535009C5AC5 /* MessageKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageKitExtensions.swift; sourceTree = "<group>"; };
+		75E1106E2798C840009C5AC5 /* lf30_editor_vxqlcgjk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_vxqlcgjk.json; path = ../../../../../Downloads/lf30_editor_vxqlcgjk.json; sourceTree = "<group>"; };
 		75E38F3727770605003CD190 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		75E38F39277709FB003CD190 /* RegularTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularTableView.swift; sourceTree = "<group>"; };
 		75E38F3B27770EBB003CD190 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
@@ -120,6 +168,8 @@
 		75E794B2276EF70D0088E34D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75E794B4276EF70D0088E34D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75E794BB276F019F0088E34D /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		75F08BBA279777420050AE76 /* NetworkUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUserModel.swift; sourceTree = "<group>"; };
+		75F08BBC279782D20050AE76 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,12 +177,57 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75D46AE12796249B009B226F /* FirebaseAnalytics in Frameworks */,
+				75D46AE32796249B009B226F /* FirebaseAuth in Frameworks */,
+				75D46AE72796249B009B226F /* FirebaseMessaging in Frameworks */,
+				75D46AE52796249B009B226F /* FirebaseDatabase in Frameworks */,
+				759590202795FFD30017D86E /* Lottie in Frameworks */,
+				75D46AE92796249B009B226F /* FirebaseStorage in Frameworks */,
+				75C90DF427975A9D0060A471 /* FirebaseFirestore in Frameworks */,
+				75E1105F27986D1F009C5AC5 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75045969279632A200D47077 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				7504596A279632BF00D47077 /* SingUpModule */,
+				7595902E279614090017D86E /* LoginModule */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7504596A279632BF00D47077 /* SingUpModule */ = {
+			isa = PBXGroup;
+			children = (
+				7504596C279632CF00D47077 /* Presenter */,
+				7526AF8F27971A960080E693 /* Model */,
+				7504596B279632C900D47077 /* View */,
+			);
+			path = SingUpModule;
+			sourceTree = "<group>";
+		};
+		7504596B279632C900D47077 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				750459672796328500D47077 /* SingUpViewController.swift */,
+				7504596D279632EA00D47077 /* SingUpViewController.xib */,
+				7526AF8C27970AD10080E693 /* SelectAvatarView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7504596C279632CF00D47077 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7504596F279633AA00D47077 /* SingUpPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		750746E0276F060300597005 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,9 +248,9 @@
 		750746E6276F0EA600597005 /* SingleGameUsersModule */ = {
 			isa = PBXGroup;
 			children = (
+				750746E9276F105000597005 /* Presenter */,
 				750746F0276F13C500597005 /* Model */,
 				750746EA276F117D00597005 /* View */,
-				750746E9276F105000597005 /* Presenter */,
 			);
 			path = SingleGameUsersModule;
 			sourceTree = "<group>";
@@ -182,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				750746EC276F128500597005 /* ExtViewController.swift */,
+				75E110692798A93D009C5AC5 /* DateExtension.swift */,
 				75E38F3727770605003CD190 /* UIColorExtension.swift */,
 				75E38F3B27770EBB003CD190 /* NavigationBarExtension.swift */,
 				75AFDA5127785369000A03BD /* UIViewExtension.swift */,
@@ -202,6 +298,7 @@
 		7518977A277000CE00B666F2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				75E1106D2798C82F009C5AC5 /* Lottie */,
 				756A2318277755A900A7063C /* Insets.swift */,
 				756A231A2777591D00A7063C /* RegularTextField.swift */,
 				756704902778F2C3008F4126 /* RegularLabel.swift */,
@@ -215,8 +312,8 @@
 		7518977D2770352400B666F2 /* ListOfGamesMule */ = {
 			isa = PBXGroup;
 			children = (
-				75189782277045D300B666F2 /* View */,
 				75189783277045DC00B666F2 /* Presenter */,
+				75189782277045D300B666F2 /* View */,
 			);
 			path = ListOfGamesMule;
 			sourceTree = "<group>";
@@ -241,9 +338,9 @@
 		7518978827704B0D00B666F2 /* GameModule */ = {
 			isa = PBXGroup;
 			children = (
+				7518978B27704B7D00B666F2 /* Presenter */,
 				755889222772F5440063BF16 /* Model */,
 				7518978C27704BAD00B666F2 /* View */,
-				7518978B27704B7D00B666F2 /* Presenter */,
 			);
 			path = GameModule;
 			sourceTree = "<group>";
@@ -302,6 +399,30 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		7526AF8C27970AD10080E693 /* SelectAvatarView */ = {
+			isa = PBXGroup;
+			children = (
+				7526AF8A27970ACD0080E693 /* SelectAvatarView.swift */,
+			);
+			path = SelectAvatarView;
+			sourceTree = "<group>";
+		};
+		7526AF8F27971A960080E693 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7526AF8D27971A8E0080E693 /* SignUpUserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7526AF92279742DB0080E693 /* UserSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7526AF90279742D60080E693 /* UserSearchView.swift */,
+			);
+			path = UserSearch;
+			sourceTree = "<group>";
+		};
 		752ECF31276F2BA9007BE008 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +440,7 @@
 			children = (
 				756A231F2777609800A7063C /* Avatars.swift */,
 				752ECF2F276F2910007BE008 /* CoreData.swift */,
+				75F08BBC279782D20050AE76 /* Firebase.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -438,6 +560,60 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		75959023279612850017D86E /* NetworkGameMainPageModule */ = {
+			isa = PBXGroup;
+			children = (
+				75F08BB927976DB60050AE76 /* Model */,
+				75959029279613150017D86E /* Presenter */,
+				75959026279612F20017D86E /* View */,
+			);
+			path = NetworkGameMainPageModule;
+			sourceTree = "<group>";
+		};
+		75959026279612F20017D86E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75959024279612C90017D86E /* NetworkGameMainPageViewController.swift */,
+				7526AF882797035A0080E693 /* NetworkGameMainPageViewController.xib */,
+				7526AF92279742DB0080E693 /* UserSearch */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75959029279613150017D86E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				75959027279613100017D86E /* NetworkGameMainPagePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7595902E279614090017D86E /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				75959032279614460017D86E /* Presenter */,
+				75959031279614410017D86E /* View */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		75959031279614410017D86E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7595902A279613E30017D86E /* LoginViewController.swift */,
+				75959033279618650017D86E /* LoginViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75959032279614460017D86E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7595902C279614040017D86E /* LoginPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		75AFDA53277879D8000A03BD /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,11 +623,62 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		75C90DF227975A9D0060A471 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75E1106027986D59009C5AC5 /* PrivateChatModule */ = {
+			isa = PBXGroup;
+			children = (
+				75E110702798D75C009C5AC5 /* Model */,
+				75E1106527986DA3009C5AC5 /* Presenter */,
+				75E1106627986DA9009C5AC5 /* View */,
+			);
+			path = PrivateChatModule;
+			sourceTree = "<group>";
+		};
+		75E1106527986DA3009C5AC5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				75E1106327986DA0009C5AC5 /* PrivateChatPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		75E1106627986DA9009C5AC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75E1106127986D8A009C5AC5 /* PrivateChatViewController.swift */,
+				75E1106B2798C535009C5AC5 /* MessageKitExtensions.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75E1106D2798C82F009C5AC5 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				75E1106E2798C840009C5AC5 /* lf30_editor_vxqlcgjk.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		75E110702798D75C009C5AC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75E1106727988C75009C5AC5 /* PrivateChatMessageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		75E7949A276EF7040088E34D = {
 			isa = PBXGroup;
 			children = (
 				75E794A5276EF7040088E34D /* MiniGames */,
 				75E794A4276EF7040088E34D /* Products */,
+				75C90DF227975A9D0060A471 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -471,12 +698,16 @@
 				750746EB276F127500597005 /* Extensions */,
 				75E794BA276F016D0088E34D /* MainModule */,
 				750746E6276F0EA600597005 /* SingleGameUsersModule */,
+				75045969279632A200D47077 /* Authentication */,
+				75E1106027986D59009C5AC5 /* PrivateChatModule */,
+				75959023279612850017D86E /* NetworkGameMainPageModule */,
 				7518977D2770352400B666F2 /* ListOfGamesMule */,
 				7518978827704B0D00B666F2 /* GameModule */,
 				7518978D27704DAA00B666F2 /* Games */,
 				75E794AC276EF7040088E34D /* Main.storyboard */,
 				75E794AF276EF70D0088E34D /* Assets.xcassets */,
 				75E794B1276EF70D0088E34D /* LaunchScreen.storyboard */,
+				75D46AEE279626B9009B226F /* GoogleService-Info.plist */,
 				75E794B4276EF70D0088E34D /* Info.plist */,
 			);
 			path = MiniGames;
@@ -489,6 +720,14 @@
 				750746E1276F060F00597005 /* View */,
 			);
 			path = MainModule;
+			sourceTree = "<group>";
+		};
+		75F08BB927976DB60050AE76 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75F08BBA279777420050AE76 /* NetworkUserModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,6 +746,16 @@
 			dependencies = (
 			);
 			name = MiniGames;
+			packageProductDependencies = (
+				7595901F2795FFD30017D86E /* Lottie */,
+				75D46AE02796249B009B226F /* FirebaseAnalytics */,
+				75D46AE22796249B009B226F /* FirebaseAuth */,
+				75D46AE42796249B009B226F /* FirebaseDatabase */,
+				75D46AE62796249B009B226F /* FirebaseMessaging */,
+				75D46AE82796249B009B226F /* FirebaseStorage */,
+				75C90DF327975A9D0060A471 /* FirebaseFirestore */,
+				75E1105E27986D1F009C5AC5 /* MessageKit */,
+			);
 			productName = MiniGames;
 			productReference = 75E794A3276EF7040088E34D /* MiniGames.app */;
 			productType = "com.apple.product-type.application";
@@ -535,6 +784,11 @@
 				Base,
 			);
 			mainGroup = 75E7949A276EF7040088E34D;
+			packageReferences = (
+				7595901E2795FFD20017D86E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				75E1105D27986D1E009C5AC5 /* XCRemoteSwiftPackageReference "MessageKit" */,
+			);
 			productRefGroup = 75E794A4276EF7040088E34D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -551,9 +805,12 @@
 			files = (
 				756A231427774D2D00A7063C /* PlayersTableViewCell.xib in Resources */,
 				7518979127704DEB00B666F2 /* TheBottleGameViewController.xib in Resources */,
+				7526AF892797035A0080E693 /* NetworkGameMainPageViewController.xib in Resources */,
 				75E794B3276EF70D0088E34D /* LaunchScreen.storyboard in Resources */,
+				75959034279618650017D86E /* LoginViewController.xib in Resources */,
 				75E794B0276EF70D0088E34D /* Assets.xcassets in Resources */,
 				7518978127703B2300B666F2 /* ListOfGamesViewController.xib in Resources */,
+				7504596E279632EA00D47077 /* SingUpViewController.xib in Resources */,
 				7567048D2778EAE0008F4126 /* thin.ttf in Resources */,
 				756704882778EAE0008F4126 /* bold.ttf in Resources */,
 				756704892778EAE0008F4126 /* medium.ttf in Resources */,
@@ -565,8 +822,10 @@
 				7518978727704AFB00B666F2 /* GameViewController.xib in Resources */,
 				7567048B2778EAE0008F4126 /* light.ttf in Resources */,
 				75E794AE276EF7040088E34D /* Main.storyboard in Resources */,
+				75D46AEF279626B9009B226F /* GoogleService-Info.plist in Resources */,
 				7560F0A62774355B0087582F /* GameScene.sks in Resources */,
 				75E794BC276F019F0088E34D /* MainViewController.xib in Resources */,
+				75E1106F2798C840009C5AC5 /* lf30_editor_vxqlcgjk.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +837,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				750746E8276F104D00597005 /* SingleGamesUsersPresenter.swift in Sources */,
+				75E1106A2798A93D009C5AC5 /* DateExtension.swift in Sources */,
+				75E1106827988C76009C5AC5 /* PrivateChatMessageModel.swift in Sources */,
 				75E38F3C27770EBB003CD190 /* NavigationBarExtension.swift in Sources */,
+				75F08BBD279782D20050AE76 /* Firebase.swift in Sources */,
+				75959028279613100017D86E /* NetworkGameMainPagePresenter.swift in Sources */,
+				75F08BBB279777420050AE76 /* NetworkUserModel.swift in Sources */,
 				756A23172777531600A7063C /* CreateSingleGameUserView.swift in Sources */,
 				75189779277000C200B666F2 /* FilledButton.swift in Sources */,
 				75716890277A0F73007E7FEF /* RandomNumberViewController.swift in Sources */,
@@ -594,25 +858,36 @@
 				75AFDA5227785369000A03BD /* UIViewExtension.swift in Sources */,
 				752ECF30276F2910007BE008 /* CoreData.swift in Sources */,
 				75E794A7276EF7040088E34D /* AppDelegate.swift in Sources */,
+				7526AF91279742D70080E693 /* UserSearchView.swift in Sources */,
 				756A23202777609800A7063C /* Avatars.swift in Sources */,
 				759A0030277105EF005C3C3E /* GameScene.swift in Sources */,
 				75AFDA572778AD5E000A03BD /* UIImageViewExtension.swift in Sources */,
 				7518977F2770355B00B666F2 /* ListOfGamesPresenter.swift in Sources */,
 				756A231B2777591E00A7063C /* RegularTextField.swift in Sources */,
+				7526AF8E27971A8F0080E693 /* SignUpUserModel.swift in Sources */,
 				75189798277074A900B666F2 /* GameCollectionView.swift in Sources */,
+				7595902D279614040017D86E /* LoginPresenter.swift in Sources */,
+				7595902B279613E30017D86E /* LoginViewController.swift in Sources */,
+				7526AF8B27970ACD0080E693 /* SelectAvatarView.swift in Sources */,
 				750746DD276F039500597005 /* Router.swift in Sources */,
 				756A23222777617A00A7063C /* AvatarsCollectionView.swift in Sources */,
 				75E38F3A277709FB003CD190 /* RegularTableView.swift in Sources */,
 				7518978627704AFB00B666F2 /* GameViewController.swift in Sources */,
 				7518977C2770351500B666F2 /* ListOfGamesViewController.swift in Sources */,
+				75E1106227986D8A009C5AC5 /* PrivateChatViewController.swift in Sources */,
 				7518979027704DEB00B666F2 /* TheBottleGameViewController.swift in Sources */,
+				750459682796328500D47077 /* SingUpViewController.swift in Sources */,
 				75E794A9276EF7040088E34D /* SceneDelegate.swift in Sources */,
 				75AFDA5527787A08000A03BD /* CircleButton.swift in Sources */,
+				75959025279612C90017D86E /* NetworkGameMainPageViewController.swift in Sources */,
 				75E38F3827770605003CD190 /* UIColorExtension.swift in Sources */,
 				756704912778F2C3008F4126 /* RegularLabel.swift in Sources */,
+				75045970279633AA00D47077 /* SingUpPresenter.swift in Sources */,
 				750746DB276F033500597005 /* ModuleBuilder.swift in Sources */,
+				75E1106427986DA0009C5AC5 /* PrivateChatPresenter.swift in Sources */,
 				756A2319277755A900A7063C /* Insets.swift in Sources */,
 				750746E4276F0EA100597005 /* SingleGameUsersViewController.swift in Sources */,
+				75E1106C2798C536009C5AC5 /* MessageKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +1109,76 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7595901E2795FFD20017D86E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		75E1105D27986D1E009C5AC5 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7595901F2795FFD30017D86E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7595901E2795FFD20017D86E /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		75C90DF327975A9D0060A471 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		75D46AE02796249B009B226F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		75D46AE22796249B009B226F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		75D46AE42796249B009B226F /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		75D46AE62796249B009B226F /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		75D46AE82796249B009B226F /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		75E1105E27986D1F009C5AC5 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75E1105D27986D1E009C5AC5 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		752ECF2C276F1FF9007BE008 /* SingleGameUsersCoreData.xcdatamodeld */ = {

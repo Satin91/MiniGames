@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 // Методы, которые запускает MainViewController
 protocol MainViewProtocol: AnyObject {
@@ -15,11 +16,12 @@ protocol MainViewProtocol: AnyObject {
 
 protocol MainPresenterProtocol: AnyObject {
     init(mainView: MainViewProtocol, router: RouterProtocol)
-    func tappedOnButton(text: String)
+    func tappedOnSingleGameButton(text: String)
+    func tappedOnNetworkGame()
 }
 
 class MainPresenter: MainPresenterProtocol {
-   
+    
     weak var mainView: MainViewProtocol?
     var router: RouterProtocol?
     
@@ -29,9 +31,15 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     
-    //MARK: Output
-    func tappedOnButton(text: String) {
+    //MARK: Action funcs
+    func tappedOnSingleGameButton(text: String) {
         router?.pushToUsersList()
     }
-    
+    func tappedOnNetworkGame() {
+        if FirebaseAuth.Auth.auth().currentUser != nil {
+            router?.pushToNetworkGameMainPage()
+        } else {
+            router?.pushToLoginViewController()
+        }
+    }
 }
