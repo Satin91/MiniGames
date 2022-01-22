@@ -3,4 +3,4 @@
 
 Архетиктуры: MVVM, MVC, MVP .
 
-Фреймворки: UIKit, SpriteKit, CoreData, MessageKit, Firebase
+Фреймворки: UIKit, SpriteKit, CoreData, MessageKit, Lottie, Firebase
