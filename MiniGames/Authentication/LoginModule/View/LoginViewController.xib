@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="MiniGames" customModuleProvider="target">
             <connections>
+                <outlet property="errorLabel" destination="qJN-40-1jL" id="p6c-Zs-RGO"/>
                 <outlet property="loginTextField" destination="c25-Ia-fIV" id="R1p-6g-bs2"/>
                 <outlet property="passwordTextField" destination="j77-Jf-tyW" id="ZFd-b8-oWc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="vJ4-iK-5XH"/>
@@ -90,6 +91,12 @@
                         <constraint firstAttribute="width" constant="200" id="V8c-Co-XPD"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJN-40-1jL" customClass="RegularLabel" customModule="MiniGames" customModuleProvider="target">
+                    <rect key="frame" x="186.5" y="356.5" width="41.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -100,7 +107,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UmH-BB-6SV" secondAttribute="trailing" constant="26" id="GIp-z7-994"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Bz5-qP-MkN" secondAttribute="bottom" constant="10" id="Ghr-gr-so7"/>
                 <constraint firstItem="Bz5-qP-MkN" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="HJz-zk-GdW"/>
+                <constraint firstItem="qJN-40-1jL" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Nb4-33-ZHT"/>
                 <constraint firstItem="UmH-BB-6SV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="26" id="RUZ-GE-1WR"/>
+                <constraint firstItem="UmH-BB-6SV" firstAttribute="top" secondItem="qJN-40-1jL" secondAttribute="bottom" constant="16" id="WTF-wT-JoL"/>
                 <constraint firstItem="gaO-WW-nMk" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ZLL-Dy-seZ"/>
                 <constraint firstItem="UmH-BB-6SV" firstAttribute="top" secondItem="gaO-WW-nMk" secondAttribute="bottom" constant="60" id="iWi-Rg-zst"/>
                 <constraint firstItem="YKp-LS-01B" firstAttribute="top" secondItem="UmH-BB-6SV" secondAttribute="bottom" constant="22" id="mFn-ST-8yo"/>

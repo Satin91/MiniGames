@@ -42,12 +42,12 @@ class PlayersTableViewCell: UITableViewCell {
         self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )
     }
     
-    public func configureFriendsCell(player: NetworkUserModel) {
+    public func configureFriendsCell(player: NetworkUser) {
         self.selectionStyle = .none
         self.playerNameLabel.font = .MGFont(size: 16, weight: .medium)
         self.playerNameLabel.textColor = .MGTitle
         self.playerNameLabel.text = player.name
-        self.playerImage.image = UIImage(named: player.avatar)
+        self.playerImage.image = UIImage(named: player.avatar!)
         self.isIncludedImage.image = UIImage(systemName: "chevron.compact.right")
         self.isIncludedImage.tintColor = .MGSubTitle
 //        self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )

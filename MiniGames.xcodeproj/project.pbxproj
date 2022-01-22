@@ -16,7 +16,7 @@
 		750746E4276F0EA100597005 /* SingleGameUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746E2276F0EA100597005 /* SingleGameUsersViewController.swift */; };
 		750746E5276F0EA100597005 /* SingleGameUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750746E3276F0EA100597005 /* SingleGameUsersViewController.xib */; };
 		750746E8276F104D00597005 /* SingleGamesUsersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746E7276F104D00597005 /* SingleGamesUsersPresenter.swift */; };
-		750746ED276F128500597005 /* ExtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746EC276F128500597005 /* ExtViewController.swift */; };
+		750746ED276F128500597005 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750746EC276F128500597005 /* UIViewControllerExtension.swift */; };
 		75189779277000C200B666F2 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75189778277000C200B666F2 /* FilledButton.swift */; };
 		7518977C2770351500B666F2 /* ListOfGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518977B2770351500B666F2 /* ListOfGamesViewController.swift */; };
 		7518977F2770355B00B666F2 /* ListOfGamesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518977E2770355B00B666F2 /* ListOfGamesPresenter.swift */; };
@@ -54,6 +54,13 @@
 		756A23222777617A00A7063C /* AvatarsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756A23212777617A00A7063C /* AvatarsCollectionView.swift */; };
 		75716890277A0F73007E7FEF /* RandomNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571688E277A0F73007E7FEF /* RandomNumberViewController.swift */; };
 		75716891277A0F73007E7FEF /* RandomNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7571688F277A0F73007E7FEF /* RandomNumberViewController.xib */; };
+		7589A6E9279AE18F00EF5035 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589A6E8279AE18F00EF5035 /* Dynamic.swift */; };
+		7589A6EC279B21A900EF5035 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589A6EB279B21A900EF5035 /* ContextMenu.swift */; };
+		7589A6F1279B305200EF5035 /* ContextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589A6EF279B305200EF5035 /* ContextTableViewCell.swift */; };
+		7589A6F2279B305200EF5035 /* ContextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7589A6F0279B305200EF5035 /* ContextTableViewCell.xib */; };
+		7589A6F6279B316700EF5035 /* ContextDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589A6F5279B316700EF5035 /* ContextDataModel.swift */; };
+		7589A6F8279B379100EF5035 /* ContextTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589A6F7279B379100EF5035 /* ContextTableView.swift */; };
+		7589A6FA279B652B00EF5035 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589A6F9279B652B00EF5035 /* FriendModel.swift */; };
 		759590202795FFD30017D86E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7595901F2795FFD30017D86E /* Lottie */; };
 		75959025279612C90017D86E /* NetworkGameMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75959024279612C90017D86E /* NetworkGameMainPageViewController.swift */; };
 		75959028279613100017D86E /* NetworkGameMainPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75959027279613100017D86E /* NetworkGameMainPagePresenter.swift */; };
@@ -102,7 +109,7 @@
 		750746E2276F0EA100597005 /* SingleGameUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameUsersViewController.swift; sourceTree = "<group>"; };
 		750746E3276F0EA100597005 /* SingleGameUsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleGameUsersViewController.xib; sourceTree = "<group>"; };
 		750746E7276F104D00597005 /* SingleGamesUsersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGamesUsersPresenter.swift; sourceTree = "<group>"; };
-		750746EC276F128500597005 /* ExtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtViewController.swift; sourceTree = "<group>"; };
+		750746EC276F128500597005 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		75189778277000C200B666F2 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		7518977B2770351500B666F2 /* ListOfGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfGamesViewController.swift; sourceTree = "<group>"; };
 		7518977E2770355B00B666F2 /* ListOfGamesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfGamesPresenter.swift; sourceTree = "<group>"; };
@@ -140,6 +147,13 @@
 		756A23212777617A00A7063C /* AvatarsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsCollectionView.swift; sourceTree = "<group>"; };
 		7571688E277A0F73007E7FEF /* RandomNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberViewController.swift; sourceTree = "<group>"; };
 		7571688F277A0F73007E7FEF /* RandomNumberViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomNumberViewController.xib; sourceTree = "<group>"; };
+		7589A6E8279AE18F00EF5035 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		7589A6EB279B21A900EF5035 /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
+		7589A6EF279B305200EF5035 /* ContextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTableViewCell.swift; sourceTree = "<group>"; };
+		7589A6F0279B305200EF5035 /* ContextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextTableViewCell.xib; sourceTree = "<group>"; };
+		7589A6F5279B316700EF5035 /* ContextDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextDataModel.swift; sourceTree = "<group>"; };
+		7589A6F7279B379100EF5035 /* ContextTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTableView.swift; sourceTree = "<group>"; };
+		7589A6F9279B652B00EF5035 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		75959024279612C90017D86E /* NetworkGameMainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGameMainPageViewController.swift; sourceTree = "<group>"; };
 		75959027279613100017D86E /* NetworkGameMainPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGameMainPagePresenter.swift; sourceTree = "<group>"; };
 		7595902A279613E30017D86E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -239,8 +253,8 @@
 		750746E1276F060F00597005 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				75E794BB276F019F0088E34D /* MainViewController.xib */,
 				75E794AA276EF7040088E34D /* MainViewController.swift */,
+				75E794BB276F019F0088E34D /* MainViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -276,7 +290,7 @@
 		750746EB276F127500597005 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				750746EC276F128500597005 /* ExtViewController.swift */,
+				750746EC276F128500597005 /* UIViewControllerExtension.swift */,
 				75E110692798A93D009C5AC5 /* DateExtension.swift */,
 				75E38F3727770605003CD190 /* UIColorExtension.swift */,
 				75E38F3B27770EBB003CD190 /* NavigationBarExtension.swift */,
@@ -419,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				7526AF90279742D60080E693 /* UserSearchView.swift */,
+				7589A6F9279B652B00EF5035 /* FriendModel.swift */,
 			);
 			path = UserSearch;
 			sourceTree = "<group>";
@@ -497,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				75E38F39277709FB003CD190 /* RegularTableView.swift */,
+				7589A6F7279B379100EF5035 /* ContextTableView.swift */,
 				756A231527774D4300A7063C /* Cell */,
 			);
 			path = Regular;
@@ -505,8 +521,8 @@
 		756A231527774D4300A7063C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				756A231127774D2D00A7063C /* PlayersTableViewCell.swift */,
-				756A231227774D2D00A7063C /* PlayersTableViewCell.xib */,
+				7589A6F3279B305900EF5035 /* Context */,
+				7589A6F4279B306300EF5035 /* Players */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -558,6 +574,41 @@
 				7571688F277A0F73007E7FEF /* RandomNumberViewController.xib */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7589A6E7279AE17600EF5035 /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				7589A6E8279AE18F00EF5035 /* Dynamic.swift */,
+			);
+			path = Bindings;
+			sourceTree = "<group>";
+		};
+		7589A6EA279B219300EF5035 /* ContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				7589A6EB279B21A900EF5035 /* ContextMenu.swift */,
+				7589A6F5279B316700EF5035 /* ContextDataModel.swift */,
+			);
+			path = ContextMenu;
+			sourceTree = "<group>";
+		};
+		7589A6F3279B305900EF5035 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				7589A6EF279B305200EF5035 /* ContextTableViewCell.swift */,
+				7589A6F0279B305200EF5035 /* ContextTableViewCell.xib */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		7589A6F4279B306300EF5035 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				756A231127774D2D00A7063C /* PlayersTableViewCell.swift */,
+				756A231227774D2D00A7063C /* PlayersTableViewCell.xib */,
+			);
+			path = Players;
 			sourceTree = "<group>";
 		};
 		75959023279612850017D86E /* NetworkGameMainPageModule */ = {
@@ -694,8 +745,10 @@
 			isa = PBXGroup;
 			children = (
 				752ECF31276F2BA9007BE008 /* Application */,
-				7518977A277000CE00B666F2 /* UI */,
 				750746EB276F127500597005 /* Extensions */,
+				7518977A277000CE00B666F2 /* UI */,
+				7589A6EA279B219300EF5035 /* ContextMenu */,
+				7589A6E7279AE17600EF5035 /* Bindings */,
 				75E794BA276F016D0088E34D /* MainModule */,
 				750746E6276F0EA600597005 /* SingleGameUsersModule */,
 				75045969279632A200D47077 /* Authentication */,
@@ -804,6 +857,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				756A231427774D2D00A7063C /* PlayersTableViewCell.xib in Resources */,
+				7589A6F2279B305200EF5035 /* ContextTableViewCell.xib in Resources */,
 				7518979127704DEB00B666F2 /* TheBottleGameViewController.xib in Resources */,
 				7526AF892797035A0080E693 /* NetworkGameMainPageViewController.xib in Resources */,
 				75E794B3276EF70D0088E34D /* LaunchScreen.storyboard in Resources */,
@@ -843,6 +897,7 @@
 				75F08BBD279782D20050AE76 /* Firebase.swift in Sources */,
 				75959028279613100017D86E /* NetworkGameMainPagePresenter.swift in Sources */,
 				75F08BBB279777420050AE76 /* NetworkUserModel.swift in Sources */,
+				7589A6F6279B316700EF5035 /* ContextDataModel.swift in Sources */,
 				756A23172777531600A7063C /* CreateSingleGameUserView.swift in Sources */,
 				75189779277000C200B666F2 /* FilledButton.swift in Sources */,
 				75716890277A0F73007E7FEF /* RandomNumberViewController.swift in Sources */,
@@ -850,18 +905,21 @@
 				75E794AB276EF7040088E34D /* MainViewController.swift in Sources */,
 				752ECF2E276F1FF9007BE008 /* SingleGameUsersCoreData.xcdatamodeld in Sources */,
 				755889212772F53D0063BF16 /* PlayersGameModel.swift in Sources */,
+				7589A6F8279B379100EF5035 /* ContextTableView.swift in Sources */,
 				7518978A27704B3900B666F2 /* GamePresenter.swift in Sources */,
 				750746DF276F05FD00597005 /* MainPresenter.swift in Sources */,
-				750746ED276F128500597005 /* ExtViewController.swift in Sources */,
+				750746ED276F128500597005 /* UIViewControllerExtension.swift in Sources */,
 				7567048F2778ECCB008F4126 /* UIFontExtension.swift in Sources */,
 				755889252772F8C20063BF16 /* GameProtocol.swift in Sources */,
 				75AFDA5227785369000A03BD /* UIViewExtension.swift in Sources */,
+				7589A6F1279B305200EF5035 /* ContextTableViewCell.swift in Sources */,
 				752ECF30276F2910007BE008 /* CoreData.swift in Sources */,
 				75E794A7276EF7040088E34D /* AppDelegate.swift in Sources */,
 				7526AF91279742D70080E693 /* UserSearchView.swift in Sources */,
 				756A23202777609800A7063C /* Avatars.swift in Sources */,
 				759A0030277105EF005C3C3E /* GameScene.swift in Sources */,
 				75AFDA572778AD5E000A03BD /* UIImageViewExtension.swift in Sources */,
+				7589A6FA279B652B00EF5035 /* FriendModel.swift in Sources */,
 				7518977F2770355B00B666F2 /* ListOfGamesPresenter.swift in Sources */,
 				756A231B2777591E00A7063C /* RegularTextField.swift in Sources */,
 				7526AF8E27971A8F0080E693 /* SignUpUserModel.swift in Sources */,
@@ -876,6 +934,8 @@
 				7518977C2770351500B666F2 /* ListOfGamesViewController.swift in Sources */,
 				75E1106227986D8A009C5AC5 /* PrivateChatViewController.swift in Sources */,
 				7518979027704DEB00B666F2 /* TheBottleGameViewController.swift in Sources */,
+				7589A6EC279B21A900EF5035 /* ContextMenu.swift in Sources */,
+				7589A6E9279AE18F00EF5035 /* Dynamic.swift in Sources */,
 				750459682796328500D47077 /* SingUpViewController.swift in Sources */,
 				75E794A9276EF7040088E34D /* SceneDelegate.swift in Sources */,
 				75AFDA5527787A08000A03BD /* CircleButton.swift in Sources */,

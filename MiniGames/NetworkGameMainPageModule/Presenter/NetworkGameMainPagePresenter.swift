@@ -9,54 +9,73 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 import CloudKit
+import AVFoundation
 
 protocol NetworkGameMainPageViewProtocol: AnyObject {
-    func addUser()
-    func fillTheData()
+    
+    
 }
 
-protocol NetworkGameMainPagePresenterProtocol: AnyObject {
-    var friends: [NetworkUserModel]? { get set}
-    var avatar: String? { get set }
-    var name: String? { get set }
+protocol NetworkGameMainPagePresenterProtocol: AnyObject, ContextMenuDelegate {
+    var friends: Dynamic<[NetworkUser]> { get set}
+    var currentUser: Dynamic<NetworkUser> { get set }
+    func getUsersFromCoreData()
     func goToPrivateChat(friendIndex: IndexPath)
+    func backToMainViewController()
     init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol)
 }
 
+
 class NetworkGameMainPagePresenter: NetworkGameMainPagePresenterProtocol {
    
-    
+    var contextData: [ContextDataModel] = [ContextDataModel(imageName: "addUser", text: "Изменить"),
+                                           ContextDataModel(imageName: "addUser", text: "Выйти")]
+ 
+    var currentUser: Dynamic<NetworkUser> = Dynamic(NetworkUser())
     
     //MARK: Properties
-    var avatar: String?
-    var name: String?
-    var friends: [NetworkUserModel]?
-    var view: NetworkGameMainPageViewProtocol?
+    var friends: Dynamic<[NetworkUser]> = Dynamic([NetworkUser]())
+    weak var view: NetworkGameMainPageViewProtocol?
     var router: RouterProtocol?
-    
-    private let fetchCurrentUser = FirebaseAuth.Auth.auth().currentUser
-    private var currentUser: NetworkUserModel?
+
     required init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
-        fillTheDataOnView()
     }
     
-    func fillTheDataOnView() {
-        Firebase.shared.getUser(email: fetchCurrentUser!.email!) { user in
-            self.avatar = user.avatar
-            self.name = user.name
-            self.currentUser = user
+     func getUsersFromCoreData() {
+         
+        CoreData.shared.requestNetworkUsers { result in
+            switch result {
+            case .success(let model):
+                self.currentUser.value = model.filter({$0.currentUser == true}).first!
+                self.friends.value = model.filter({$0.currentUser == false})
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
-        
-        Firebase.shared.getFriends(completion: { friends in
-            self.friends = friends
-            self.view?.fillTheData()
-        })
     }
     
     func goToPrivateChat(friendIndex: IndexPath) {
-        guard let friend = friends?[friendIndex.row] else { return }
-        router?.pushToPrivateChatViewController(currentUser: currentUser!, companion: friend)
+        let friend = friends.value[friendIndex.row]
+        router?.pushToPrivateChatViewController(currentUser: currentUser.value, companion: friend)
+    }
+    
+    func backToMainViewController() {
+        router?.backToMainViewController()
+    }
+    
+    func didTappedContextCell(index: IndexPath) {
+        switch index.row {
+        case 0:
+            break
+            //edit profile
+        case 1:
+            try! FirebaseAuth.Auth.auth().signOut()
+            CoreData.shared.removeAllUsers()
+            router?.backToMainViewController()
+        default:
+            break
+        }
     }
 }

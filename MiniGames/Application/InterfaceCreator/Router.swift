@@ -16,19 +16,20 @@ protocol RouterProtocol: RouterStandart {
     func pushToLoginViewController()
     func showSingUpViewController()
     func pushToNetworkGameMainPage()
-    func pushToPrivateChatViewController(currentUser: NetworkUserModel, companion: NetworkUserModel)
+    func pushToPrivateChatViewController(currentUser: NetworkUser, companion: NetworkUser)
     func pushToUsersList()
     func pushToListOfGamesViewController()
     func pushToGameViewController(game: GameProtocol)
+    func backToMainViewController()
     // Дальше установить переходы на другие контроллеры
 }
 
 
 //MARK: Навигация
 class Router: RouterProtocol {
-   
-    
   
+    
+   
     //MARK: Properties
     var navigationController: UINavigationController?
     var moduleBuilder: ModuleBuilderProtocol?
@@ -48,6 +49,15 @@ class Router: RouterProtocol {
         navigationController.viewControllers = [mainView]
     }
  
+    
+    //MARK: Back to main view controller
+    func backToMainViewController() {
+        guard let navigationController = navigationController else { return }
+        let viewControllers: [UIViewController] = navigationController.viewControllers as [UIViewController]
+        navigationController.popToViewController(viewControllers[0], animated: true)
+    }
+    
+    
     //MARK: Login
     func pushToLoginViewController() {
         guard let navigationController = navigationController else { return }
@@ -74,7 +84,7 @@ class Router: RouterProtocol {
     
     
     //MARK: Private chat
-    func pushToPrivateChatViewController(currentUser: NetworkUserModel, companion: NetworkUserModel) {
+    func pushToPrivateChatViewController(currentUser: NetworkUser, companion: NetworkUser) {
         guard let navigationController = navigationController else { return }
         guard let privateChat = moduleBuilder?.createPrivateChatModule(router: self, currentUser: currentUser, companion: companion) else { return }
         navigationController.pushViewController(privateChat, animated: true)

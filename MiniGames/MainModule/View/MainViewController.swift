@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupHeaderLabel()
+      //  try! FirebaseAuth.Auth.auth().signOut()
     }
     
     

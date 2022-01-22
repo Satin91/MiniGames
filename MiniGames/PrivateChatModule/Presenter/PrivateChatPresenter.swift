@@ -8,67 +8,57 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseFirestore
 
 protocol PrivateChatViewProtocol: AnyObject {
-    func reloadMessages()
+    
 }
 
 protocol PrivateChatPresenterProtocol: AnyObject {
     var address: String? { get set }
-    var messages: [Message]? { get set }
-    var currentUser: NetworkUserModel { get set }
-    var companion: NetworkUserModel { get set }
+    var messages: Dynamic<[Message]>  { get set }
+    var currentUser: NetworkUser { get set }
+    var companion: NetworkUser { get set }
     func sendMessage(text:String)
-    init(view: PrivateChatViewProtocol, router: RouterProtocol, currentUser: NetworkUserModel, companion: NetworkUserModel)
+    init(view: PrivateChatViewProtocol, router: RouterProtocol, currentUser: NetworkUser, companion: NetworkUser)
 }
 
 class PrivateChatPresenter: PrivateChatPresenterProtocol {
     
+    
+    
     //MARK: Properties
     weak var view: PrivateChatViewProtocol?
     let database = Database.database().reference()
-    var currentUser: NetworkUserModel
-    var companion: NetworkUserModel
+    var currentUser: NetworkUser
+    var companion: NetworkUser
     var address: String?
-    var messages: [Message]? = []
+    var messages: Dynamic<[Message]> = Dynamic([Message]())
     
-    required init(view: PrivateChatViewProtocol, router: RouterProtocol, currentUser: NetworkUserModel, companion: NetworkUserModel) {
+    required init(view: PrivateChatViewProtocol, router: RouterProtocol, currentUser: NetworkUser, companion: NetworkUser) {
         self.view = view
         self.currentUser = currentUser
         self.companion = companion
-        observeMessages {
-            self.view?.reloadMessages()
-        }
+        observeMessages()
     }
     
-    
+    let firestore = Firestore.firestore()
     //MARK: Delegate func
     func sendMessage(text: String) {
-        let message = PrivateChatMessageModel(name: currentUser.name, text: text, id: currentUser.id, date: Date().getStringDate(), email: currentUser.email)
-        database.child(fullAddress()).setValue(message.message)
+        let message = PrivateChatMessageModel(name: currentUser.name!, text: text, id: currentUser.id!, date: Date().getStringDate(), email: currentUser.email!)
+        
+        self.database.child("chats/\(self.companion.chatID!)/messages/\(Date().getStringDate())").setValue(message.message)
     }
     
     //MARK: Private funcs
-    private func fullAddress() -> String {
-        let address = "chats/\(safeEmail(email: "\(currentUser.email)+\(companion.email)"))/messages/\(Date().getStringDate())"
-        return address
-    }
-    
-    private func observeMessages(completion: @escaping () -> Void) {
-        database.child("chats/\(safeEmail(email: "\(currentUser.email)+\(companion.email)"))/messages").observe(.childAdded) { snapshot in
+    private func observeMessages() {
+        
+        self.database.child("chats/\(self.companion.chatID!)/messages").observe(.childAdded) { [weak self] snapshot in
             guard let data = snapshot.value as? [String:String] else { return }
             let message = Message(sender: Sender(senderId: data["id"]!, displayName: data["name"]!) , messageId: data["date"]!, sentDate: Date().dateFromFirebase(stringDate: data["date"]!), kind: .text(data["text"]!))
-            self.messages?.append(message)
-            completion()
+            self?.messages.value.append(message)
         }
     }
-    
-    private func safeEmail(email: String)-> String {
-        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
-        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
-        return safeEmail
-    }
-    
 }
 
 

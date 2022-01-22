@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="NetworkUser" representedClassName=".NetworkUser" syncable="YES" codeGenerationType="class">
         <attribute name="avatar" attributeType="String" defaultValueString="user1"/>
+        <attribute name="chatID" optional="YES" attributeType="String" defaultValueString="noChatDetected"/>
+        <attribute name="currentUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isParticipant" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -14,7 +16,7 @@
         <attribute name="name" attributeType="String" minValueString="0" defaultValueString="New player"/>
     </entity>
     <elements>
-        <element name="NetworkUser" positionX="-918" positionY="-189" width="128" height="104"/>
+        <element name="NetworkUser" positionX="-918" positionY="-189" width="128" height="134"/>
         <element name="SingleUserModel" positionX="-931.4942626953125" positionY="-230.2584533691406" width="128" height="89"/>
     </elements>
 </model>

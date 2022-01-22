@@ -44,6 +44,7 @@ class PrivateChatViewController: MessagesViewController, PrivateChatViewProtocol
         setupNavBar()
         setupLottieView()
         animateLottieView()
+        createBindings()
     }
     
     
@@ -107,14 +108,13 @@ class PrivateChatViewController: MessagesViewController, PrivateChatViewProtocol
         messageInputBar.sendButton.setTitle("", for: .normal)
     }
     
-    
-    //MARK: Delegate funcs
-    func reloadMessages() {
-        messagesCollectionView.reloadData()
-        lottieView.isHidden = true
-        chatBackground.isHidden = false
-        
+    func createBindings() {
+        presenter.messages.bind { [weak self] messages in
+            self?.messagesCollectionView.reloadData()
+            self?.lottieView.isHidden = true
+            self?.chatBackground.isHidden = false
+        }
     }
-    
+
 }
 

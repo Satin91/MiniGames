@@ -10,15 +10,19 @@ import SwiftUI
 
 extension UIView {
     
+    func checkForTheViewPresence(on view: UIView) -> Bool {
+        for view in view.subviews {
+            if view.accessibilityIdentifier == self.accessibilityIdentifier {
+                return true
+            }
+        }
+        return false
+    }
+    
     //MARK: Show animations
     func showFromRightSide(onView: UIView) {
         
-        for view in onView.subviews {
-            if view.accessibilityIdentifier == self.accessibilityIdentifier {
-                return
-            }
-        }
-        
+        guard !self.checkForTheViewPresence(on: onView) else { return }
         onView.addSubview(self)
         self.alpha = 1
         
@@ -34,7 +38,7 @@ extension UIView {
             self.center.x = onView.center.x + -self.bounds.width / 2
             
         } completion: { _ in
-
+            
             UIView.animate(withDuration: duration * 0.4, delay: 0, options: .curveEaseOut) {
                 self.transform = CGAffineTransform(rotationAngle: -angle)
             } completion: { _ in
@@ -45,6 +49,14 @@ extension UIView {
         }
     }
     
+    func standartShow(onView: UIView) {
+        self.alpha = 0
+        guard !self.checkForTheViewPresence(on: onView) else { return }
+        onView.addSubview(self)
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 1
+        }
+    }
     
     //MARK: Close animation
     func closeAnimation() {

@@ -21,7 +21,7 @@ class UserSearchView: UIView {
     private let currentUser = FirebaseAuth.Auth.auth().currentUser
     private let label = RegularLabel(size: 16, weight: .regular)
     
-    private var searchingUser: NetworkUserModel? {
+    private var searchingUser: NetworkUser? {
         didSet {
             tableView.reloadData()
         }
@@ -55,7 +55,6 @@ class UserSearchView: UIView {
     }
     
     func searchByEmail(email: String) {
-        
         Firebase.shared.getUser(email: email) { user in
             self.searchingUser = user
         }
@@ -129,7 +128,7 @@ extension UserSearchView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.id, for: indexPath) as! PlayersTableViewCell
         if self.searchingUser != nil {
-            cell.playerImage.image = UIImage(named: searchingUser!.avatar)
+            cell.playerImage.image = UIImage(named: searchingUser!.avatar!)
             cell.playerNameLabel.text = searchingUser!.name
         }
         return cell
@@ -137,7 +136,8 @@ extension UserSearchView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        self.database.collection(["users",currentUser!.email!,"friends"].joined(separator: "/")).document(searchingUser!.email).setData(["new":"Friend"])
+        let friend = FriendModel(name: "", chatID: "")
+        friend.checkFriendExistance(searchEmail: searchingUser!.email!)
         self.closeAnimation()
     }
 }

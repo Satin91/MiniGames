@@ -12,7 +12,7 @@ protocol ModuleBuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController
     func createLoginModule(router: RouterProtocol) -> UIViewController
     func createNetworkGameMainPageModule(router: RouterProtocol) -> UIViewController
-    func createPrivateChatModule(router: RouterProtocol, currentUser: NetworkUserModel, companion: NetworkUserModel) -> UIViewController
+    func createPrivateChatModule(router: RouterProtocol, currentUser: NetworkUser, companion: NetworkUser) -> UIViewController
     func createSingleGameUsersModule(router: RouterProtocol) -> UIViewController
     func createListOfGamesModule(router: RouterProtocol) -> UIViewController
     func createGameModule(router: RouterProtocol, game: GameProtocol) -> UIViewController
@@ -59,7 +59,7 @@ class ModuleBuilder: ModuleBuilderProtocol {
     
     
     //MARK: Private chat
-    func createPrivateChatModule(router: RouterProtocol, currentUser: NetworkUserModel, companion: NetworkUserModel) -> UIViewController {
+    func createPrivateChatModule(router: RouterProtocol, currentUser: NetworkUser, companion: NetworkUser) -> UIViewController {
         let view = PrivateChatViewController()
         let presenter = PrivateChatPresenter(view: view, router: router, currentUser: currentUser, companion: companion)
         view.presenter = presenter

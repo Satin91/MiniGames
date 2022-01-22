@@ -37,7 +37,14 @@ class MainPresenter: MainPresenterProtocol {
     }
     func tappedOnNetworkGame() {
         if FirebaseAuth.Auth.auth().currentUser != nil {
-            router?.pushToNetworkGameMainPage()
+            CoreData.shared.requestNetworkUsers { result in
+                switch result {
+                case .success(let users):
+                    router?.pushToNetworkGameMainPage()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         } else {
             router?.pushToLoginViewController()
         }

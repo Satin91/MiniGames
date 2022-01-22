@@ -14,7 +14,7 @@ extension PrivateChatViewController: MessagesDataSource,MessagesDisplayDelegate,
     
     func currentSender() -> SenderType {
         let currentUser = presenter!.currentUser
-        return Sender(senderId: currentUser.id, displayName: currentUser.name)
+        return Sender(senderId: currentUser.id!, displayName: currentUser.name!)
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
@@ -22,18 +22,18 @@ extension PrivateChatViewController: MessagesDataSource,MessagesDisplayDelegate,
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        let avatar = presenter.messages![indexPath.section].sender.senderId == presenter.currentUser.id ? presenter.currentUser.avatar : presenter.companion.avatar
-        avatarView.image = UIImage(named: avatar)
+        let avatar = presenter.messages.value[indexPath.section].sender.senderId == presenter.currentUser.id ? presenter.currentUser.avatar : presenter.companion.avatar
+        avatarView.image = UIImage(named: avatar!)
         avatarView.backgroundColor = .MGRegularImage
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return presenter!.messages![indexPath.section]
+        return presenter!.messages.value[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         guard let messages = presenter?.messages else { return 0}
-        return messages.count
+        return messages.value.count
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {

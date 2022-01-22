@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class CoreData {
-  
+    
     
     // MARK: Properties
     static var shared = CoreData()
@@ -39,15 +39,12 @@ class CoreData {
         }
     }
     
-    
-    func saveNetworkUser(name: String?,avatar: String,email: String,id: String, completion: (NetworkUser?, Bool) -> Void ) {
+    //MARK: Network user
+    func saveNetworkUser(user: NetworkUser,currentUser: Bool, completion: (NetworkUser?, Bool) -> Void ) {
         
-        let user = NetworkUser(context: context)
-        user.name = (name != nil && name != "") ? name: "Неизвестный игрок"
-        user.id = id
-        user.avatar = avatar
         do {
             try self.context.save()
+            print("coredata object is \(user)")
             completion(user, true)
         } catch let error{
             print(error.localizedDescription)
@@ -55,6 +52,29 @@ class CoreData {
         }
     }
     
+    func removeAllUsers() {
+        let deleteFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NetworkUser")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetchRequest)
+        do {
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
+            self.saveContext()
+        } catch {
+            print("Удаления не произошло")
+        }
+    }
+    
+    func requestNetworkUsers(completion: (Result<[NetworkUser], Error>) -> Void) {
+        let context = self.persistentContainer.viewContext
+        let request: NSFetchRequest<NetworkUser> = NetworkUser.fetchRequest()
+        do {
+            let model = try context.fetch(request)
+            completion(.success(model))
+        } catch let error as NSError {
+            completion(.failure(error))
+        }
+    }
+    
+    //MARK: Single users
     func saveUser(name: String?,avatar: String, completion: (SingleUserModel?, Bool) -> Void ) {
         
         let user = SingleUserModel(context: context)
@@ -69,7 +89,7 @@ class CoreData {
             completion(user, false)
         }
     }
-
+    
     func removeUser(user: SingleUserModel) {
         let request: NSFetchRequest<SingleUserModel> = SingleUserModel.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", "id" , user.id! as CVarArg)
@@ -87,12 +107,10 @@ class CoreData {
         request.predicate = NSPredicate(format: "%K == %@", "id" , user.id! as CVarArg)
         
         do {
-            try context.fetch(request)
             self.saveContext()
         } catch {
             
         }
-        
     }
     
     func requestUsers(completion: (Result<[SingleUserModel], Error>) -> Void) {

@@ -26,10 +26,14 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
         setupImageView()
         setupNavBar()
         setupTableView()
+        createBindings()
+        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+ 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         
     }
     
@@ -41,9 +45,15 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
     }
     
     @objc func leftBarButton(_ button: UIButton) {
-        navigationController?.popViewController(animated: true)
+        presenter.backToMainViewController()
     }
     
+    //MARK: Action funcs
+    @IBAction func showContextMenuButtonTapped(_ sender: UIButton) {
+        self.showContextMenu(holderView: userImage, data: presenter.contextData) { [weak self] index in
+            self?.presenter.didTappedContextCell(index: index)
+        }
+    }
     
     // MARK: Private funcs
     private func setupView() {
@@ -64,40 +74,41 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
     }
     
     private func setupImageView() {
-        guard let avatar = presenter.avatar else { return }
-        userImage.image = UIImage(named: avatar)
         userImage.layer.cornerRadius = userImage.bounds.height / 2
         userImage.backgroundColor = .MGRegularImage
         userImage.clipsToBounds = true
     }
     
-    private func setupLabel() {
-        nameLabel.text = presenter.name
-    }
-    
-    
-    // MARK: Delegate funcs
-    func addUser() {
+    func createBindings() {
+        presenter.currentUser.bind({ [weak self] user in
+            self?.nameLabel.text = user.name
+            self?.userImage.image = UIImage(named: user.avatar!)
+            
+        })
+        presenter.friends.bind { [weak self] users in
+            self?.tableView.reloadData()
+        }
         
+        self.presenter.getUsersFromCoreData()
     }
     
-    func fillTheData() {
-        setupImageView()
-        setupLabel()
-        tableView.reloadData()
+ 
+    // MARK: Delegate funcs
+    deinit {
+        print("Deinit Network game")
     }
 }
 
 extension NetworkGameMainPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.friends?.count ?? 0
+        return presenter.friends.value.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.id, for: indexPath) as! PlayersTableViewCell
-        guard let friends = presenter.friends else { return cell }
+        let friends = presenter.friends.value
         let object = friends[indexPath.row]
         cell.configureFriendsCell(player: object)
         return cell
