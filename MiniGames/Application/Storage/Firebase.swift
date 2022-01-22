@@ -18,7 +18,7 @@ class Firebase {
     //Получение пользователя и его друзей
     func getAndSaveUserData(currentUserEmail: String ,completion: @escaping () -> Void) {
         
-        let concurrentQueue = DispatchQueue(label: "ru.denisegaluev.concurrent-queue", attributes: .concurrent)
+        let concurrentQueue = DispatchQueue(label: "concurrentQueue01", attributes: .concurrent)
         let group = DispatchGroup()
         
         concurrentQueue.async {
