@@ -15,8 +15,8 @@ class FriendModel {
     let currentUser = FirebaseAuth.Auth.auth().currentUser
     let database = Firestore.firestore()
     
-    init(name:String,chatID: String) {
-        self.friend["name"] = name
+    init(lastMessage:String,chatID: String) {
+        self.friend["lastMessage"] = lastMessage
         let id = UUID().uuidString
         self.friend["chatID"] = id
     }

@@ -8,8 +8,9 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
-import CloudKit
-import AVFoundation
+import RxSwift
+import RxCocoa
+//import AVFoundation
 
 protocol NetworkGameMainPageViewProtocol: AnyObject {
     
@@ -17,48 +18,76 @@ protocol NetworkGameMainPageViewProtocol: AnyObject {
 }
 
 protocol NetworkGameMainPagePresenterProtocol: AnyObject, ContextMenuDelegate {
-    var friends: Dynamic<[NetworkUser]> { get set}
-    var currentUser: Dynamic<NetworkUser> { get set }
+    var friends: BehaviorRelay<[NetworkUser]> { get set }
+    var currentUser: NetworkUser { get set }
+    var currentUserObserver: Observable<NetworkUser> { get set }
+    func removeFriend(indexPath: IndexPath)
     func getUsersFromCoreData()
     func goToPrivateChat(friendIndex: IndexPath)
     func backToMainViewController()
-    init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol)
+    init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol, currentUser: NetworkUser)
 }
 
 
 class NetworkGameMainPagePresenter: NetworkGameMainPagePresenterProtocol {
+ 
+    
+  
+    
    
+    
     var contextData: [ContextDataModel] = [ContextDataModel(imageName: "addUser", text: "Изменить"),
                                            ContextDataModel(imageName: "addUser", text: "Выйти")]
- 
-    var currentUser: Dynamic<NetworkUser> = Dynamic(NetworkUser())
+    
+    var currentUser: NetworkUser
+    var currentUserObserver: Observable<NetworkUser>
+    var friends: BehaviorRelay<[NetworkUser]>
     
     //MARK: Properties
-    var friends: Dynamic<[NetworkUser]> = Dynamic([NetworkUser]())
+  
     weak var view: NetworkGameMainPageViewProtocol?
     var router: RouterProtocol?
-
-    required init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol) {
+    let database = Firestore.firestore()
+    let nn = BehaviorRelay(value: ["","sad"])
+    lazy var obsFriends = Observable.of(currentUser).asObservable()
+    
+    required init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol, currentUser: NetworkUser) {
         self.view = view
         self.router = router
+        self.currentUser = currentUser
+        self.currentUserObserver = Observable.of(currentUser).asObservable()
+        self.friends = BehaviorRelay(value: [NetworkUser]())
+        
+        getUsersFromCoreData()
     }
     
-     func getUsersFromCoreData() {
-         
-        CoreData.shared.requestNetworkUsers { result in
-            switch result {
-            case .success(let model):
-                self.currentUser.value = model.filter({$0.currentUser == true}).first!
-                self.friends.value = model.filter({$0.currentUser == false})
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    
+    func getUsersFromCoreData() {
+       
+        Firebase.shared.getFriends(currentUserEmail: self.currentUser.email!) { friends in
+            self.friends.accept(friends)
         }
+    }
+    
+    func observeFriends() {
+        guard let email = currentUser.email else { return }
+        let path = ["users",email,"friends"].joined(separator: "/")
+        
+        self.database.collection(path).addSnapshotListener { list, error in
+            
+            
+        }
+ 
+    }
+    
+    func removeFriend(indexPath: IndexPath) {
+
+        
     }
     
     func goToPrivateChat(friendIndex: IndexPath) {
         let friend = friends.value[friendIndex.row]
-        router?.pushToPrivateChatViewController(currentUser: currentUser.value, companion: friend)
+        router?.pushToPrivateChatViewController(currentUser: currentUser, companion: friend)
     }
     
     func backToMainViewController() {

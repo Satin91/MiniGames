@@ -48,13 +48,13 @@ class RegularTextField: UITextField {
     
     //MARK: Overriden funcs
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        let inset: CGFloat = withImage == nil ? 15 : 15 + 48
+        let inset: CGFloat = withImage == nil ? 15 : 50 + 15
         let rect = CGRect(x: inset, y: 0, width: self.bounds.width - inset, height: bounds.height)
         return rect
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        let inset: CGFloat = withImage == nil ? 15 : 15 + 48
+        let inset: CGFloat = withImage == nil ? 15 : 50 + 15
         let rect = CGRect(x: inset, y: 0, width: self.bounds.width - inset, height: bounds.height)
         return rect
     }
@@ -98,19 +98,18 @@ class RegularTextField: UITextField {
     }
     
     public func setLeftViewImage(name: String) {
-        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 26))
-        
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         
         self.leftViewMode = .always
         let imageView = UIImageView()
         imageView.frame = leftView.bounds
-        imageView.frame.origin.x += 8
-        imageView.image = UIImage(systemName: name)
+        
+        imageView.image = UIImage(named: name)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .MGSubTitle
+        imageView.setImageColor(color: .MGSubTitle)
         leftView.addSubview(imageView)
         self.leftView = leftView
-        let lineView = UIView(frame: CGRect(x: leftView.bounds.width + 13, y: 0, width: 1, height: self.bounds.height) )
+        let lineView = UIView(frame: CGRect(x: 50, y: 0, width: 1, height: self.bounds.height) )
         lineView.backgroundColor = .MGBackground
         self.addSubview(lineView)
     }

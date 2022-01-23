@@ -16,7 +16,9 @@ class Insets {
     static let standartCornerRadius: CGFloat = 12
     static let contextCornerRadius: CGFloat = 8
     static let regilarTableViewRowHeight: CGFloat = 60
+    static let networkUsersTableViewRowHeight: CGFloat = 74 + 8 // 8 - пространство между ячейками
     static let contextTableViewRowHeight: CGFloat = 34
+   
 }
 
 

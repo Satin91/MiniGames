@@ -7,6 +7,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isParticipant" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="lastMessage" optional="YES" attributeType="String" defaultValueString="Нет сообщений"/>
         <attribute name="name" optional="YES" attributeType="String" defaultValueString="Неизвестный игрок"/>
     </entity>
     <entity name="SingleUserModel" representedClassName=".SingleUserModel" syncable="YES" codeGenerationType="class">
@@ -16,7 +17,7 @@
         <attribute name="name" attributeType="String" minValueString="0" defaultValueString="New player"/>
     </entity>
     <elements>
-        <element name="NetworkUser" positionX="-918" positionY="-189" width="128" height="134"/>
+        <element name="NetworkUser" positionX="-918" positionY="-189" width="128" height="149"/>
         <element name="SingleUserModel" positionX="-931.4942626953125" positionY="-230.2584533691406" width="128" height="89"/>
     </elements>
 </model>

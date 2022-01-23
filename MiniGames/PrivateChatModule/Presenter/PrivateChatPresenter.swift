@@ -29,7 +29,8 @@ class PrivateChatPresenter: PrivateChatPresenterProtocol {
     
     //MARK: Properties
     weak var view: PrivateChatViewProtocol?
-    let database = Database.database().reference()
+    let realtimeDatabase = Database.database().reference()
+    let database = Firestore.firestore()
     var currentUser: NetworkUser
     var companion: NetworkUser
     var address: String?
@@ -46,17 +47,17 @@ class PrivateChatPresenter: PrivateChatPresenterProtocol {
     //MARK: Delegate func
     func sendMessage(text: String) {
         let message = PrivateChatMessageModel(name: currentUser.name!, text: text, id: currentUser.id!, date: Date().getStringDate(), email: currentUser.email!)
-        
-        self.database.child("chats/\(self.companion.chatID!)/messages/\(Date().getStringDate())").setValue(message.message)
+        self.realtimeDatabase.child("chats/\(self.companion.chatID!)/messages/\(Date().getStringDate())").setValue(message.message)
     }
     
     //MARK: Private funcs
     private func observeMessages() {
         
-        self.database.child("chats/\(self.companion.chatID!)/messages").observe(.childAdded) { [weak self] snapshot in
+        self.realtimeDatabase.child("chats/\(self.companion.chatID!)/messages").observe(.childAdded) { [weak self] snapshot in
             guard let data = snapshot.value as? [String:String] else { return }
+            guard let self = self else { return }
             let message = Message(sender: Sender(senderId: data["id"]!, displayName: data["name"]!) , messageId: data["date"]!, sentDate: Date().dateFromFirebase(stringDate: data["date"]!), kind: .text(data["text"]!))
-            self?.messages.value.append(message)
+            self.messages.value.append(message)
         }
     }
 }

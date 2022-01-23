@@ -36,7 +36,7 @@
                                     <real key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="MGPlaceholder" value="Имя"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="person"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="userName"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A99-Fj-f2V" customClass="RegularTextField" customModule="MiniGames" customModuleProvider="target">
@@ -48,7 +48,7 @@
                                     <real key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="MGPlaceholder" value="Email"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="envelope"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="userEmail"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Han-Wx-rqD" customClass="RegularTextField" customModule="MiniGames" customModuleProvider="target">
@@ -60,7 +60,7 @@
                                     <real key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="MGPlaceholder" value="Пароль"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="lock"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="userPassword"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
                     </subviews>
@@ -124,13 +124,13 @@
     </objects>
     <designables>
         <designable name="2gO-v6-iJw">
-            <size key="intrinsicContentSize" width="-152.5" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="A99-Fj-f2V">
-            <size key="intrinsicContentSize" width="-143.5" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="Han-Wx-rqD">
-            <size key="intrinsicContentSize" width="-124.5" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="dbs-N0-M3b">
             <size key="intrinsicContentSize" width="164" height="31"/>

@@ -136,7 +136,7 @@ extension UserSearchView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        let friend = FriendModel(name: "", chatID: "")
+        let friend = FriendModel(lastMessage: "", chatID: "")
         friend.checkFriendExistance(searchEmail: searchingUser!.email!)
         self.closeAnimation()
     }

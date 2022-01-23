@@ -71,6 +71,11 @@
 		75AFDA5227785369000A03BD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFDA5127785369000A03BD /* UIViewExtension.swift */; };
 		75AFDA5527787A08000A03BD /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFDA5427787A08000A03BD /* CircleButton.swift */; };
 		75AFDA572778AD5E000A03BD /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFDA562778AD5E000A03BD /* UIImageViewExtension.swift */; };
+		75B9BB2E279CC62900F496A5 /* NetworkUsersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9BB2D279CC62900F496A5 /* NetworkUsersTableView.swift */; };
+		75B9BB31279CC73000F496A5 /* NetworkUsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9BB2F279CC73000F496A5 /* NetworkUsersTableViewCell.swift */; };
+		75B9BB32279CC73000F496A5 /* NetworkUsersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B9BB30279CC73000F496A5 /* NetworkUsersTableViewCell.xib */; };
+		75BB1049279D1367008F6082 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 75BB1048279D1367008F6082 /* RxCocoa */; };
+		75BB104B279D1367008F6082 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75BB104A279D1367008F6082 /* RxSwift */; };
 		75C90DF427975A9D0060A471 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75C90DF327975A9D0060A471 /* FirebaseFirestore */; };
 		75D46AE12796249B009B226F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE02796249B009B226F /* FirebaseAnalytics */; };
 		75D46AE32796249B009B226F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 75D46AE22796249B009B226F /* FirebaseAuth */; };
@@ -163,6 +168,9 @@
 		75AFDA5127785369000A03BD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		75AFDA5427787A08000A03BD /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		75AFDA562778AD5E000A03BD /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		75B9BB2D279CC62900F496A5 /* NetworkUsersTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUsersTableView.swift; sourceTree = "<group>"; };
+		75B9BB2F279CC73000F496A5 /* NetworkUsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUsersTableViewCell.swift; sourceTree = "<group>"; };
+		75B9BB30279CC73000F496A5 /* NetworkUsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetworkUsersTableViewCell.xib; sourceTree = "<group>"; };
 		75D46AEE279626B9009B226F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75E1106127986D8A009C5AC5 /* PrivateChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatViewController.swift; sourceTree = "<group>"; };
 		75E1106327986DA0009C5AC5 /* PrivateChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatPresenter.swift; sourceTree = "<group>"; };
@@ -191,7 +199,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75BB1049279D1367008F6082 /* RxCocoa in Frameworks */,
 				75D46AE12796249B009B226F /* FirebaseAnalytics in Frameworks */,
+				75BB104B279D1367008F6082 /* RxSwift in Frameworks */,
 				75D46AE32796249B009B226F /* FirebaseAuth in Frameworks */,
 				75D46AE72796249B009B226F /* FirebaseMessaging in Frameworks */,
 				75D46AE52796249B009B226F /* FirebaseDatabase in Frameworks */,
@@ -503,6 +513,7 @@
 		756A230F27774CFE00A7063C /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				75B9BB2C279CC60300F496A5 /* NetworkUsers */,
 				756A231027774D0E00A7063C /* Regular */,
 			);
 			path = TableView;
@@ -674,6 +685,24 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		75B9BB2C279CC60300F496A5 /* NetworkUsers */ = {
+			isa = PBXGroup;
+			children = (
+				75B9BB2D279CC62900F496A5 /* NetworkUsersTableView.swift */,
+				75B9BB33279CC74500F496A5 /* Cell */,
+			);
+			path = NetworkUsers;
+			sourceTree = "<group>";
+		};
+		75B9BB33279CC74500F496A5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				75B9BB2F279CC73000F496A5 /* NetworkUsersTableViewCell.swift */,
+				75B9BB30279CC73000F496A5 /* NetworkUsersTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		75C90DF227975A9D0060A471 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,8 +781,8 @@
 				75E794BA276F016D0088E34D /* MainModule */,
 				750746E6276F0EA600597005 /* SingleGameUsersModule */,
 				75045969279632A200D47077 /* Authentication */,
-				75E1106027986D59009C5AC5 /* PrivateChatModule */,
 				75959023279612850017D86E /* NetworkGameMainPageModule */,
+				75E1106027986D59009C5AC5 /* PrivateChatModule */,
 				7518977D2770352400B666F2 /* ListOfGamesMule */,
 				7518978827704B0D00B666F2 /* GameModule */,
 				7518978D27704DAA00B666F2 /* Games */,
@@ -808,6 +837,8 @@
 				75D46AE82796249B009B226F /* FirebaseStorage */,
 				75C90DF327975A9D0060A471 /* FirebaseFirestore */,
 				75E1105E27986D1F009C5AC5 /* MessageKit */,
+				75BB1048279D1367008F6082 /* RxCocoa */,
+				75BB104A279D1367008F6082 /* RxSwift */,
 			);
 			productName = MiniGames;
 			productReference = 75E794A3276EF7040088E34D /* MiniGames.app */;
@@ -841,6 +872,7 @@
 				7595901E2795FFD20017D86E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				75E1105D27986D1E009C5AC5 /* XCRemoteSwiftPackageReference "MessageKit" */,
+				75BB1047279D1367008F6082 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 75E794A4276EF7040088E34D /* Products */;
 			projectDirPath = "";
@@ -875,6 +907,7 @@
 				756704812778E79E008F4126 /* Klasik Regular.otf in Resources */,
 				7518978727704AFB00B666F2 /* GameViewController.xib in Resources */,
 				7567048B2778EAE0008F4126 /* light.ttf in Resources */,
+				75B9BB32279CC73000F496A5 /* NetworkUsersTableViewCell.xib in Resources */,
 				75E794AE276EF7040088E34D /* Main.storyboard in Resources */,
 				75D46AEF279626B9009B226F /* GoogleService-Info.plist in Resources */,
 				7560F0A62774355B0087582F /* GameScene.sks in Resources */,
@@ -897,11 +930,13 @@
 				75F08BBD279782D20050AE76 /* Firebase.swift in Sources */,
 				75959028279613100017D86E /* NetworkGameMainPagePresenter.swift in Sources */,
 				75F08BBB279777420050AE76 /* NetworkUserModel.swift in Sources */,
+				75B9BB2E279CC62900F496A5 /* NetworkUsersTableView.swift in Sources */,
 				7589A6F6279B316700EF5035 /* ContextDataModel.swift in Sources */,
 				756A23172777531600A7063C /* CreateSingleGameUserView.swift in Sources */,
 				75189779277000C200B666F2 /* FilledButton.swift in Sources */,
 				75716890277A0F73007E7FEF /* RandomNumberViewController.swift in Sources */,
 				756A231327774D2D00A7063C /* PlayersTableViewCell.swift in Sources */,
+				75B9BB31279CC73000F496A5 /* NetworkUsersTableViewCell.swift in Sources */,
 				75E794AB276EF7040088E34D /* MainViewController.swift in Sources */,
 				752ECF2E276F1FF9007BE008 /* SingleGameUsersCoreData.xcdatamodeld in Sources */,
 				755889212772F53D0063BF16 /* PlayersGameModel.swift in Sources */,
@@ -1179,6 +1214,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		75BB1047279D1367008F6082 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		75D46ADF2796249B009B226F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1202,6 +1245,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7595901E2795FFD20017D86E /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		75BB1048279D1367008F6082 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75BB1047279D1367008F6082 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		75BB104A279D1367008F6082 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75BB1047279D1367008F6082 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 		75C90DF327975A9D0060A471 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -40,7 +40,7 @@ class CoreData {
     }
     
     //MARK: Network user
-    func saveNetworkUser(user: NetworkUser,currentUser: Bool, completion: (NetworkUser?, Bool) -> Void ) {
+    func saveNetworkUser(user: NetworkUser, completion: (NetworkUser?, Bool) -> Void ) {
         
         do {
             try self.context.save()

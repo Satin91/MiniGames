@@ -52,8 +52,5 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     private func setupView() {
         view.backgroundColor = .MGBackground
     }
-    deinit {
-        
-        print("Deinit login")
-    }
+
 }

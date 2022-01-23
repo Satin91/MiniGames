@@ -48,7 +48,7 @@ class LoginPresenter: LoginPresenterProtocol {
             } else {
                 //Блокировка вызова метода в случае неоднократного нажатия кнопки
                 if self.block == false {
-                    self.saveUserAndPushToToNextVC()
+                    self.saveUserAndPushToNextVC()
                 }
                 self.block = true
             }
@@ -56,9 +56,11 @@ class LoginPresenter: LoginPresenterProtocol {
        
     }
     
-    func saveUserAndPushToToNextVC() {
-        Firebase.shared.getAndSaveUserData(currentUserEmail: FirebaseAuth.Auth.auth().currentUser!.email!) { [weak self]  in
-            self!.router?.pushToNetworkGameMainPage()
+    func saveUserAndPushToNextVC() {
+            Firebase.shared.getUser(email: FirebaseAuth.Auth.auth().currentUser!.email!,currentUser: true) { [weak self] user in
+                CoreData.shared.saveNetworkUser(user: user) { user, bs in
+                    self?.router?.pushToNetworkGameMainPage(currentUser: user!)
+                }
             }
         }
     

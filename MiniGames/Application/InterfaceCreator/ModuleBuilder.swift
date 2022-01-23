@@ -11,7 +11,7 @@ protocol ModuleBuilderProtocol {
 
     func createMainModule(router: RouterProtocol) -> UIViewController
     func createLoginModule(router: RouterProtocol) -> UIViewController
-    func createNetworkGameMainPageModule(router: RouterProtocol) -> UIViewController
+    func createNetworkGameMainPageModule(router: RouterProtocol, currentUser: NetworkUser) -> UIViewController
     func createPrivateChatModule(router: RouterProtocol, currentUser: NetworkUser, companion: NetworkUser) -> UIViewController
     func createSingleGameUsersModule(router: RouterProtocol) -> UIViewController
     func createListOfGamesModule(router: RouterProtocol) -> UIViewController
@@ -50,9 +50,9 @@ class ModuleBuilder: ModuleBuilderProtocol {
     
     
     //MARK: Network game main page
-    func createNetworkGameMainPageModule(router: RouterProtocol) -> UIViewController {
+    func createNetworkGameMainPageModule(router: RouterProtocol, currentUser: NetworkUser) -> UIViewController {
         let view = NetworkGameMainPageViewController()
-        let presenter = NetworkGameMainPagePresenter(view: view, router: router)
+        let presenter = NetworkGameMainPagePresenter(view: view, router: router, currentUser: currentUser)
         view.presenter = presenter
         return view
     }

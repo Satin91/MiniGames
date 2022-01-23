@@ -15,7 +15,7 @@ protocol RouterProtocol: RouterStandart {
     func initialViewController() // Начальный контроллер
     func pushToLoginViewController()
     func showSingUpViewController()
-    func pushToNetworkGameMainPage()
+    func pushToNetworkGameMainPage(currentUser: NetworkUser)
     func pushToPrivateChatViewController(currentUser: NetworkUser, companion: NetworkUser)
     func pushToUsersList()
     func pushToListOfGamesViewController()
@@ -76,9 +76,9 @@ class Router: RouterProtocol {
     
     
     //MARK: Network game main page
-    func pushToNetworkGameMainPage() {
+    func pushToNetworkGameMainPage(currentUser: NetworkUser) {
         guard let navigationController = navigationController else { return }
-        guard let networkGameMainPage = moduleBuilder?.createNetworkGameMainPageModule(router: self) else { return }
+        guard let networkGameMainPage = moduleBuilder?.createNetworkGameMainPageModule(router: self, currentUser: currentUser) else { return }
         navigationController.pushViewController(networkGameMainPage, animated: true)
     }
     

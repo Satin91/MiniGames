@@ -40,7 +40,8 @@ class MainPresenter: MainPresenterProtocol {
             CoreData.shared.requestNetworkUsers { result in
                 switch result {
                 case .success(let users):
-                    router?.pushToNetworkGameMainPage()
+                    let currentUser = users.filter({$0.currentUser == true}).first
+                        self.router?.pushToNetworkGameMainPage(currentUser: currentUser!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

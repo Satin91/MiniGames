@@ -7,17 +7,19 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageViewProtocol {
     
     // MARK: Outlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: RegularLabel!
-    @IBOutlet weak var tableView: RegularTableView!
+    @IBOutlet weak var tableView: NetworkUsersTableView!
     
     // MARK: Properties
     var presenter: NetworkGameMainPagePresenterProtocol!
-    
+    let dispiseBag = DisposeBag()
     
     // MARK: Overriden funcs
     override func viewDidLoad() {
@@ -26,14 +28,13 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
         setupImageView()
         setupNavBar()
         setupTableView()
-        createBindings()
-        
+        observeValues()
+   
     }
     
- 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
     }
     
@@ -67,10 +68,9 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
     }
     
     private func setupTableView() {
+        tableView.data = presenter.friends.value
         tableView.delegate = self
-        tableView.dataSource = self
-        tableView.setupTableView()
-        tableView.register(UINib(nibName: "PlayersTableViewCell", bundle: nil) , forCellReuseIdentifier: PlayersTableViewCell.id)
+        tableView.reloadData()
     }
     
     private func setupImageView() {
@@ -78,43 +78,42 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
         userImage.backgroundColor = .MGRegularImage
         userImage.clipsToBounds = true
     }
-    
-    func createBindings() {
-        presenter.currentUser.bind({ [weak self] user in
+
+    private func observeValues() {
+        presenter.currentUserObserver.bind { [weak self] user in
             self?.nameLabel.text = user.name
             self?.userImage.image = UIImage(named: user.avatar!)
-            
-        })
-        presenter.friends.bind { [weak self] users in
+            //self?.tableView.data = users
             self?.tableView.reloadData()
-        }
+        }.dispose()
         
-        self.presenter.getUsersFromCoreData()
+        presenter.friends.asObservable().subscribe { friends in
+            switch friends {
+            case .next(let friends):
+                print("FRIENDS IS LOAD \(friends)")
+            default:
+                break
+            }
+        }.dispose()
+        
+        presenter.friends.asObservable().subscribe(onNext: { [weak self] friends in
+            self?.tableView.data = friends
+            self?.tableView.reloadData()
+        }).disposed(by: dispiseBag)
+
     }
     
- 
     // MARK: Delegate funcs
     deinit {
         print("Deinit Network game")
     }
 }
 
-extension NetworkGameMainPageViewController: UITableViewDelegate, UITableViewDataSource {
+extension NetworkGameMainPageViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.friends.value.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.id, for: indexPath) as! PlayersTableViewCell
-        let friends = presenter.friends.value
-        let object = friends[indexPath.row]
-        cell.configureFriendsCell(player: object)
-        return cell
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // presenter.removeFriend(indexPath: indexPath)
         presenter.goToPrivateChat(friendIndex: indexPath)
     }
     
