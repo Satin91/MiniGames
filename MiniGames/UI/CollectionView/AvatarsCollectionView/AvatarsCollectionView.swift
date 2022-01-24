@@ -66,12 +66,12 @@ class AvatarsCollectionView: UICollectionView {
             horizontalGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(spacing)
             
             // Группа для групп
-            
             let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(self.bounds.width - (spacing * 2) )), subitem: horizontalGroup, count: 3)
             verticalGroup.interItemSpacing =  NSCollectionLayoutSpacing.fixed(spacing)
             verticalGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: 0, trailing: spacing)
             
             let section = NSCollectionLayoutSection(group: verticalGroup)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: spacing * 2)
             section.orthogonalScrollingBehavior = .groupPaging
             return section
         }

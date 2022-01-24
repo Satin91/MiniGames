@@ -15,10 +15,10 @@ class FriendModel {
     let currentUser = FirebaseAuth.Auth.auth().currentUser
     let database = Firestore.firestore()
     
-    init(lastMessage:String,chatID: String) {
-        self.friend["lastMessage"] = lastMessage
+    init(chatID: String, email: String) {
         let id = UUID().uuidString
         self.friend["chatID"] = id
+        self.friend["email"] = email
     }
     
     func checkFriendExistance(searchEmail: String) {
@@ -36,8 +36,10 @@ class FriendModel {
         switch isExist {
         case true:
             print("Есть такой друг")
+            
             break
         case false:
+            
             print("Нет такого друга")
             self.database.collection(["users",currentUser!.email!,"friends"].joined(separator: "/")).document(searchEmail).setData(self.friend)
             

@@ -7,6 +7,8 @@
 
 import UIKit
 import CoreData
+import FirebaseFirestore
+import RxSwift
 
 class CoreData {
     
@@ -40,18 +42,54 @@ class CoreData {
     }
     
     //MARK: Network user
-    func saveNetworkUser(user: NetworkUser, completion: (NetworkUser?, Bool) -> Void ) {
+    func saveNetworkUser(user: NetworkUser, completion: ((NetworkUser?, Bool) -> Void )?) {
+        
+
         
         do {
             try self.context.save()
-            print("coredata object is \(user)")
-            completion(user, true)
+            completion?(user, true)
         } catch let error{
             print(error.localizedDescription)
-            completion(user, false)
+            completion?(user, false)
         }
     }
     
+    
+    
+    
+    func updateUserData(data: [String: String] , completion: ((NetworkUser) -> Void)?) {
+        let request: NSFetchRequest<NetworkUser> = NetworkUser.fetchRequest()
+        request.predicate = NSPredicate(format: "%K == %@", "id" , data["id"]! as CVarArg)
+        
+        do {
+            let model = try context.fetch(request)
+            if model.count == 0 {
+                let user = NetworkUser(context: self.context)
+                user.email = data["email"]
+                user.avatar = data["avatar"]
+                user.name = data["name"]
+                user.id = data["id"]
+                user.chatID = data["chatID"]
+                user.lastMessage = data["lastMessage"] ?? ""
+                print("NEW USER \(user)")
+                self.saveContext()
+                completion?(user)
+            } else {
+                model[0].email = data["email"]
+                model[0].avatar = data["avatar"]
+                model[0].name = data["name"]
+                model[0].id = data["id"]
+                model[0].chatID = data["chatID"]
+                model[0].lastMessage = data["lastMessage"] ?? ""
+                print("OLD USER \(model[0])")
+                self.saveContext()
+                completion?(model[0])
+            }
+        } catch {
+            
+        }
+    }
     func removeAllUsers() {
         let deleteFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NetworkUser")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetchRequest)

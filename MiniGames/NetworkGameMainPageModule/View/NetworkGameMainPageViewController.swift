@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SwiftUI
 
 class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageViewProtocol {
+ 
     
     // MARK: Outlets
     @IBOutlet weak var userImage: UIImageView!
@@ -19,7 +21,7 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
     
     // MARK: Properties
     var presenter: NetworkGameMainPagePresenterProtocol!
-    let dispiseBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     // MARK: Overriden funcs
     override func viewDidLoad() {
@@ -27,18 +29,10 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
         setupView()
         setupImageView()
         setupNavBar()
-        setupTableView()
+        //setupTableView()
         observeValues()
-   
     }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    
+
     //MARK: Action funcs
     @objc func rightBarButton(_ button: UIButton) {
         let searchView = UserSearchView(owner: self.view)
@@ -69,7 +63,6 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
     
     private func setupTableView() {
         tableView.data = presenter.friends.value
-        tableView.delegate = self
         tableView.reloadData()
     }
     
@@ -80,41 +73,29 @@ class NetworkGameMainPageViewController: UIViewController, NetworkGameMainPageVi
     }
 
     private func observeValues() {
+        
         presenter.currentUserObserver.bind { [weak self] user in
             self?.nameLabel.text = user.name
             self?.userImage.image = UIImage(named: user.avatar!)
-            //self?.tableView.data = users
             self?.tableView.reloadData()
-        }.dispose()
-        
-        presenter.friends.asObservable().subscribe { friends in
-            switch friends {
-            case .next(let friends):
-                print("FRIENDS IS LOAD \(friends)")
-            default:
-                break
-            }
-        }.dispose()
-        
-        presenter.friends.asObservable().subscribe(onNext: { [weak self] friends in
-            self?.tableView.data = friends
-            self?.tableView.reloadData()
-        }).disposed(by: dispiseBag)
+        }.disposed(by: disposeBag)
 
+        presenter.friends.bind(to: tableView.rx.items(cellIdentifier: NetworkUsersTableViewCell.id, cellType: NetworkUsersTableViewCell.self)) { row, model, cell in
+            cell.userNameLabel.text = model.name
+            cell.selectionStyle = .none
+            guard let avatarName = model.avatar else { return }
+            cell.userAvatarImage.image = UIImage(named: avatarName)
+            cell.lastMessageLabel.text = model.lastMessage
+        }.disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(NetworkUser.self).subscribe { [weak self] user in
+            self?.presenter.goToPrivateChat(companion: user)
+            
+        }.disposed(by: disposeBag)
     }
     
     // MARK: Delegate funcs
     deinit {
         print("Deinit Network game")
     }
-}
-
-extension NetworkGameMainPageViewController: UITableViewDelegate {
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // presenter.removeFriend(indexPath: indexPath)
-        presenter.goToPrivateChat(friendIndex: indexPath)
-    }
-    
 }

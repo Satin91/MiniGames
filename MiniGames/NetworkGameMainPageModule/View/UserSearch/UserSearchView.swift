@@ -18,7 +18,6 @@ class UserSearchView: UIView {
     private var tableView = RegularTableView(frame: .zero, style: .insetGrouped)
     private var owner: UIView!
     private let database = Firestore.firestore()
-    private let currentUser = FirebaseAuth.Auth.auth().currentUser
     private let label = RegularLabel(size: 16, weight: .regular)
     
     private var searchingUser: NetworkUser? {
@@ -136,7 +135,7 @@ extension UserSearchView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        let friend = FriendModel(lastMessage: "", chatID: "")
+        let friend = FriendModel(chatID: "", email: searchingUser!.email!)
         friend.checkFriendExistance(searchEmail: searchingUser!.email!)
         self.closeAnimation()
     }

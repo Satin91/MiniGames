@@ -38,10 +38,10 @@ class NetworkUsersTableView: UITableView {
         let data = self.data[indexPath.row]
         cell.userAvatarImage.image = UIImage(named: data.avatar!)
         cell.userNameLabel.text = data.name
-        
-        self.getLastMessage(user: data) { text in
-            cell.lastMessageLabel.text = text
-        }
+//
+//        self.getLastMessage(user: data) { text in
+//            cell.lastMessageLabel.text = text
+//        }
         
         cell.selectionStyle = .none
         return cell
@@ -61,7 +61,7 @@ class NetworkUsersTableView: UITableView {
         self.separatorStyle = .none
         self.backgroundColor = .clear
         self.rowHeight = Insets.networkUsersTableViewRowHeight
-        self.dataSource = self
+       // self.dataSource = self
     }
     
     private func registerCell() {
