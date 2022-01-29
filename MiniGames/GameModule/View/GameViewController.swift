@@ -56,6 +56,7 @@ extension GameViewController: GameViewProtocol {
         guard let currentGame = game as? UIViewController else { return }
         addChild(currentGame)
         currentGame.view.frame = gameView.bounds
+        currentGame.view.backgroundColor = .clear
         gameView.addSubview(currentGame.view)
         currentGame.didMove(toParent: self)
     }

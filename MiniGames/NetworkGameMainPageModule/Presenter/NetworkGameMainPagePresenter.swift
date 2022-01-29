@@ -15,13 +15,15 @@ import RxCocoa
 
 protocol NetworkGameMainPageViewProtocol: AnyObject {
     
-    
 }
 
 protocol NetworkGameMainPagePresenterProtocol: AnyObject, ContextMenuDelegate {
     var friends: BehaviorRelay<[NetworkUser]> { get set }
     var currentUser: NetworkUser { get set }
     var currentUserObserver: Observable<NetworkUser> { get set }
+    var searchingFriendObserver: BehaviorRelay<[[String:String]]> { get set }
+    func selectedSearchTableViewRow(data: [String: String], completion: @escaping ()-> Void)
+    func searchFriends(email: String)
     func removeFriend(indexPath: IndexPath)
     func goToPrivateChat(companion: NetworkUser)
     func backToMainViewController()
@@ -37,12 +39,15 @@ class NetworkGameMainPagePresenter: NetworkGameMainPagePresenterProtocol {
     var currentUser: NetworkUser
     var currentUserObserver: Observable<NetworkUser>
     var friends: BehaviorRelay<[NetworkUser]>
+    var searchingFriendObserver: BehaviorRelay<[[String : String]]>
     let realtimeDatabase = Database.database().reference()
     //MARK: Properties
-    
     weak var view: NetworkGameMainPageViewProtocol?
     var router: RouterProtocol?
     let database = Firestore.firestore()
+    //Queue
+    let serialQueue = DispatchQueue(label: "serial",qos: .userInteractive ,attributes: .concurrent)
+    let semaphore = DispatchSemaphore(value: 1)
     
     required init(view: NetworkGameMainPageViewProtocol, router: RouterProtocol, currentUser: NetworkUser) {
         self.view = view
@@ -50,7 +55,7 @@ class NetworkGameMainPagePresenter: NetworkGameMainPagePresenterProtocol {
         self.currentUser = currentUser
         self.currentUserObserver = Observable.of(currentUser).asObservable()
         self.friends = BehaviorRelay(value: [NetworkUser]())
-        
+        self.searchingFriendObserver = BehaviorRelay(value: [[:]])
         getFriends()
         observeFriends()
         observeMessages()
@@ -68,8 +73,57 @@ class NetworkGameMainPagePresenter: NetworkGameMainPagePresenterProtocol {
         }
     }
     
+    func searchFriends(email: String) {
+        
+        serialQueue.async { [weak self] in
+            self?.semaphore.wait()
+            
+            guard let email = email.safeEmail() else {
+                self?.searchingFriendObserver.accept([[:]])
+                self?.semaphore.signal()
+                return }
+            
+            self?.database.document("users/\(email)").getDocument { [weak self] snapshot, error in
+                let data = snapshot?.data() as? [String: String]
+                if data == nil {
+                    self?.searchingFriendObserver.accept([[:]])
+                    self?.semaphore.signal()
+                } else {
+                    self?.searchingFriendObserver.accept([data!])
+                    self?.semaphore.signal()
+                }
+            }
+        }
+    }
     
-    
+    func selectedSearchTableViewRow(data: [String: String], completion: @escaping ()-> Void) {
+        let searchingEmail = data["email"]!
+        
+        let friend = FriendModel(chatID: "", email: searchingEmail)
+        self.database.collection(Firebase.shared.userCollectionFriendsPath(currentUser.email!)).getDocuments { snap, error in
+            let exist = snap?.documents.contains(where: { doc in
+                doc.documentID == searchingEmail
+            })
+            
+            if exist != nil && exist == false {
+                //add friend to current youser
+                self.database.collection(["users",self.currentUser.email!,"friends"].joined(separator: "/")).document(searchingEmail).setData(friend.friend)
+                
+                //add friend to searching user
+                self.database.collection(["users",searchingEmail,"friends"].joined(separator: "/")).document(self.currentUser.email!).setData(friend.friend)
+                
+                self.updateUsers(email: data["email"]!)
+                completion()
+                //Обнулить список по завершению работы метода
+                self.searchingFriendObserver.accept([[:]])
+            } else {
+                completion()
+                //Обнулить список по завершению работы метода
+                self.searchingFriendObserver.accept([[:]])
+                print("есть такой друг")
+            }
+        }
+    }
     
     func observeMessages() {
         
@@ -83,7 +137,6 @@ class NetworkGameMainPagePresenter: NetworkGameMainPagePresenterProtocol {
             }
             
             self.realtimeDatabase.child("chats/\(i.chatID!)/messages").observe(.childAdded) { [weak self] snapshot in
-                print("CHAT ADD")
                 self?.updateUsers(email: i.email!)
             }
         }

@@ -33,7 +33,8 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="textFieldType">
                                     <real key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="MGPlaceholder" value="Логин"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="MGPlaceholder" value="Email"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="userEmail"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j77-Jf-tyW" customClass="RegularTextField" customModule="MiniGames" customModuleProvider="target">
@@ -45,6 +46,7 @@
                                     <real key="value" value="1"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="MGPlaceholder" value="Пароль"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="withImage" value="userPassword"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
                     </subviews>
@@ -64,7 +66,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bz5-qP-MkN">
-                    <rect key="frame" x="45.5" y="816.5" width="323" height="35.5"/>
+                    <rect key="frame" x="50.5" y="816.5" width="313.5" height="35.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет аккаунта?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diU-fH-KVe" customClass="RegularLabel" customModule="MiniGames" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="120" height="35.5"/>
@@ -73,9 +75,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-xR-jIa">
-                            <rect key="frame" x="120" y="0.0" width="203" height="35.5"/>
+                            <rect key="frame" x="120" y="0.0" width="193.5" height="35.5"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Зарегистрироваться">
+                            <buttonConfiguration key="configuration" style="plain" title="Зарегистрируйтесь">
                                 <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="18"/>
                             </buttonConfiguration>
                             <connections>
@@ -122,10 +124,10 @@
             <size key="intrinsicContentSize" width="65" height="31"/>
         </designable>
         <designable name="c25-Ia-fIV">
-            <size key="intrinsicContentSize" width="-183.5" height="34"/>
+            <size key="intrinsicContentSize" width="-141.5" height="34"/>
         </designable>
         <designable name="j77-Jf-tyW">
-            <size key="intrinsicContentSize" width="-172.5" height="34"/>
+            <size key="intrinsicContentSize" width="-122.5" height="34"/>
         </designable>
     </designables>
     <resources>

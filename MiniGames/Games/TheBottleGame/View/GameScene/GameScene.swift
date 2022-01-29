@@ -38,7 +38,7 @@ class GameScene: SKScene, LinkedToGameVC {
         createCircle()
         createFlippingObject()
         createPlayers()
-        self.backgroundColor = .MGBackground
+        backgroundObject.scene?.backgroundColor = .clear
     }
     
     func createFlippingObject() {

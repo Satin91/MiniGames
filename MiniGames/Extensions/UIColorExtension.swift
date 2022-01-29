@@ -12,6 +12,7 @@ extension UIColor {
     
     //MARK: Background
     static let MGBackground = UIColor(red: 255/255, green: 243/255, blue: 233/255, alpha: 1.0)
+    static let MGGestureBackground = UIColor(red: 4/255, green: 9/255, blue: 32/255, alpha: 0.5)
     
     
     //MARK: Button

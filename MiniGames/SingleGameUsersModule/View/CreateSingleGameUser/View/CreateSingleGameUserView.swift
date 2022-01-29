@@ -9,10 +9,12 @@ import Foundation
 import UIKit
 
 
-class CreateSingleGameUserView: UIView, UITextFieldDelegate {
+class CreateSingleGameUserView: UIView, UITextFieldDelegate, GestureBackgroundDidTapped {
+
     
     
-    weak var owner: UIView!
+    //MARK: Properties
+    private weak var owner: UIView!
     private var nameTextField = RegularTextField(type: .filled, placeholder: "Введите имя", image: nil)
     private var collectionView: AvatarsCollectionView!
     private var createButton: FilledButton!
@@ -20,8 +22,11 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
     private var completion: ((String,String)-> Void)?
     private var avatarName: String = "user1"
     private var playerName: String = "Новый игрок"
+    private var gestureGrayBackground: GestureBackground!
     var descriptionLabel = RegularLabel(size: 18, weight: .regular)
     
+    
+    //MARK: Overriden Funcs
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -30,6 +35,7 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
         self.init()
         self.owner = owner
         setupView()
+        setupGestureBackground()
         setupRadius()
         setupShadow()
         setupLabel()
@@ -37,21 +43,48 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
         setupButtons()
         setupCollectionView()
         setupConstraints()
-        
     }
     
+    
+    //MARK: Action funcs
     public func show(completion: ((String,String) -> Void)?) {
         self.completion = completion
+        self.gestureGrayBackground.standartShow(onView: self.owner)
         self.showFromRightSide(onView: self.owner)
     }
     
+    @objc func createPlayerButtonTapped() {
+        completion!(playerName,avatarName)
+        self.closeAnimation()
+        self.gestureGrayBackground.closeAnimation()
+    }
     
+    @objc func closeButtonTapped() {
+        self.closeAnimation()
+        self.gestureGrayBackground.closeAnimation()
+    }
+    
+    @objc func textFieldDIdChange(_ textField: UITextField) {
+        guard let text = textField.text, text != "" else {
+            playerName = "Новый игрок"
+            return
+        }
+        playerName = text
+    }
+    
+    
+    //MARK: Private funcs
     private func setupView() {
         self.backgroundColor = .white
         self.accessibilityIdentifier = "CreateSingleGameUserView"
         let width: CGFloat = self.owner.bounds.width - (Insets.additionalHorizontalIndent * 2)
         let height: CGFloat = self.owner.bounds.height * 0.7
         self.frame = CGRect(x: 0, y: 0, width: width, height: height)
+    }
+    
+    private func setupGestureBackground() {
+        gestureGrayBackground = GestureBackground(frame: owner.bounds)
+        gestureGrayBackground.delegate = self
     }
     
     private func setupShadow() {
@@ -66,7 +99,6 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
         layer.cornerCurve = .continuous
     }
     
-    //MARK: UI
     private func setupTextField() {
         nameTextField.delegate = self
         nameTextField.addTarget(self, action: #selector(textFieldDIdChange(_:)), for: .editingChanged)
@@ -88,7 +120,6 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
         addSubview(createButton)
         addSubview(closeButton)
     }
-    
     
     private func setupCollectionView() {
         collectionView = AvatarsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -139,27 +170,18 @@ class CreateSingleGameUserView: UIView, UITextFieldDelegate {
         ])
     }
     
-    @objc func createPlayerButtonTapped() {
-        completion!(playerName,avatarName)
-        self.closeAnimation()
-    }
-    
-    @objc func closeButtonTapped() {
-        self.closeAnimation()
-    }
-    
-    @objc func textFieldDIdChange(_ textField: UITextField) {
-        guard let text = textField.text, text != "" else {
-            playerName = "Новый игрок"
-            return
-        }
-        playerName = text
-    }
+
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
+    //MARK: Delegate funcs
+    func didTapGestureBackground() {
+        self.gestureGrayBackground.closeAnimation()
+        self.closeAnimation()
+        
+    }
 }
 
 extension CreateSingleGameUserView: UICollectionViewDelegate {

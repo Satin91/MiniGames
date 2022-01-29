@@ -53,6 +53,15 @@ class PlayersTableViewCell: UITableViewCell {
 //        self.isIncludedImage.setImageColor(color: player.isParticipant == true ? .MGSaturatedImage : .MGSubTitle )
     }
     
+    public func configureSearchCell(userData: [String:String]) {
+        self.backgroundColor = .MGFilledButton
+        self.playerImage.backgroundColor = .MGBackground
+        self.isIncludedImage.image = UIImage(systemName: "plus.circle.fill")
+        self.isIncludedImage.tintColor = .MGTitle
+        self.playerImage.image = UIImage(named: userData["avatar"]!)
+        self.playerNameLabel.text = userData["name"]
+    }
+    
     
     // MARK: Private funcs
     private func setupImage() {

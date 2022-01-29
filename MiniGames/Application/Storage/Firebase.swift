@@ -25,7 +25,7 @@ class Firebase {
         return "users/\(email)/friends"
     }
     let concurrentQueue = DispatchQueue(label: "ru.denisegaluev.concurrent-queue", attributes: .concurrent)
-  
+    
     func getFriends(currentUserEmail: String, completion: @escaping  ([NetworkUser]) -> Void) {
         self.database.collection("users/\(currentUserEmail.lowercased())/friends/").getDocuments { snapshot, error in
             let documents = snapshot?.documents
@@ -55,10 +55,8 @@ class Firebase {
                 completion(i["text"]!)
             }
         }
-        
-            
-
     }
+    
     func getDictionaryUser(email: String, completion: @escaping ([String:String]) -> Void ) {
         
         guard let currentUser = FirebaseAuth.Auth.auth().currentUser else { return }
@@ -73,12 +71,9 @@ class Firebase {
                 guard let data = doc?.data() as? [String:String] else { return }
                 
                 self?.database.document("users/\(email.lowercased())").getDocument { snapshot, error in
-                    
                     guard var user = snapshot?.data() as? [String: String] else { return }
-                    
                     user["chatID"] = data["chatID"]
                     self?.getLastMessage(chatID: data["chatID"]!) { text in
-                       
                         user["lastMessage"] = text
                         completion(user)
                     }
